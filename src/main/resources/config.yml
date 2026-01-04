@@ -1,0 +1,431 @@
+# ========================================
+#          HaumeaMC - Configuração
+#            Servidor HaumeaMC
+# ========================================
+
+# ========================================
+#            TIPO DE SERVIDOR
+# ========================================
+# Define como o plugin deve se comportar neste servidor.
+# 
+# Valores possíveis:
+#   KITPVP - Servidor de combate (carrega todos os sistemas)
+#   LOBBY  - Servidor de lobby (carrega apenas sistemas essenciais)
+#
+# KITPVP carrega: kits, sopas, duelos, eventos, feast, cassino, cosméticos, etc.
+# LOBBY carrega: chat, tags, grupos, banco de dados, seletor de servidores.
+server-type: KITPVP
+
+# ========================================
+#       CONFIGURAÇÕES DO LOBBY
+# ========================================
+# Estas configurações são usadas APENAS quando server-type: LOBBY
+lobby:
+  # Item seletor de servidores
+  selector-item:
+    material: COMPASS
+    name: "&a&lSERVIDORES"
+    slot: 4  # Slot na hotbar (0-8)
+    lore:
+      - ""
+      - "&7Clique para escolher"
+      - "&7um servidor para jogar!"
+      - ""
+      - "&e&lCLIQUE PARA ABRIR"
+  
+  # Servidores disponíveis para selecionar
+  # O 'id' DEVE corresponder ao nome do servidor no BungeeCord!
+  servers:
+    kitpvp:
+      name: "&c&lKITPVP"
+      material: DIAMOND_SWORD
+      data: 0
+      slot: 13  # Slot no menu de seleção
+      lore:
+        - "&7Servidor de PvP com kits!"
+        - "&7Lute, mate e suba no ranking!"
+        - ""
+        - "&b&l» &7Elimine inimigos"
+        - "&b&l» &7Escolha seu kit favorito"
+        - "&b&l» &7Participe de eventos"
+      action: "&e&lCLIQUE PARA ENTRAR"
+  
+  # =============================================
+  #       NPCs CLICÁVEIS DO LOBBY
+  # =============================================
+  # NPCs com skins que ao clicar redirecionam para servidores
+  # Usa ProtocolLib para criar NPCs fake com skins da Mojang API
+  # 
+  # Configuração de cada NPC:
+  #   display-name: Nome colorido do NPC
+  #   skin: Nome de um jogador Mojang para usar a skin
+  #   server: Nome do servidor no Velocity (DEVE ser exato)
+  #   location: Posição onde spawnar o NPC
+  #   hologram: Linhas do holograma ({players} = jogadores online)
+  
+  npcs:
+    kitpvp:
+      display-name: "&c&lKitPvP"
+      skin: "Technoblade"
+      server: "kitpvp"
+      location:
+        world: "world"
+        x: 0.5
+        y: 65.0
+        z: 5.5
+        yaw: 180.0
+        pitch: 0.0
+      hologram:
+        - "&6&lKITPVP"
+        - "&7Jogando: &a{players}"
+        - ""
+        - "&e&lCLIQUE PARA JOGAR"
+    
+    # Exemplo de mais NPCs (descomente para usar):
+    # survival:
+    #   display-name: "&a&lSurvival"
+    #   skin: "Dream"
+    #   server: "survival"
+    #   location:
+    #     world: "world"
+    #     x: 5.5
+    #     y: 65.0
+    #     z: 5.5
+    #     yaw: 180.0
+    #     pitch: 0.0
+    #   hologram:
+    #     - "&2&lSURVIVAL"
+    #     - "&7Jogando: &a{players}"
+    #     - ""
+    #     - "&e&lCLIQUE PARA JOGAR"
+
+
+# Configurações Gerais
+configuracoes:
+  prefixo: "&8[&6Haumea&8] "
+  debug: false
+
+# ========================================
+#              ÁREA DE SPAWN
+# ========================================
+# Configurações da área de proteção do spawn.
+# Jogadores dentro desta área não podem receber dano.
+#
+# Para configurar:
+# 1. Use /haumeawarp set spawn para definir o centro
+# 2. Ajuste o raio abaixo conforme seu spawn
+spawn:
+  # Raio da área protegida em blocos (a partir do warp "spawn")
+  raio: 50
+  # Verificar apenas X e Z (ignora altura Y)
+  ignorar-altura: true
+# ========================================
+#              BANCO DE DADOS
+# ========================================
+
+# Configuração do MongoDB
+# O MongoDB é usado para persistência de dados de jogadores,
+# contas, punições, reports, warps e outros dados.
+#
+# Para desenvolvimento local:
+# - Instale MongoDB Community: https://www.mongodb.com/try/download/community
+# - Deixe as configurações padrão abaixo
+#
+# Para VPS/produção:
+# - Configure host com IP da VPS ou localhost se MongoDB estiver na mesma máquina
+# - Configure username e password para segurança
+mongodb:
+  enabled: true
+  host: "localhost"
+  port: 27017
+  database: "haumeamc"
+  # Autenticação (deixe vazio para desenvolvimento local sem senha)
+  username: ""
+  password: ""
+  auth-database: "admin"
+
+# ========================================
+#              SISTEMA DE TAGS
+# ========================================
+
+tags:
+  # Mensagem de uso do /tag
+  menu:
+    titulo: "&3&lTAGS&f Utilize: /tag para ver suas &9&lTAGS&f ou /tag <nome da tag> para selecionar uma &9&lTAG&f."
+  
+  # Lista de tags disponíveis
+  # Categorias: staff, vip, festiva, comum
+  lista:
+    # ============ STAFF ============
+    dono:
+      display: "&4&lDONO"
+      prefixo: "&4&lDONO &4"
+      permissao: "haumea.tag.dono"
+      categoria: "staff"
+    diretor:
+      display: "&4&lDIRETOR"
+      prefixo: "&4&lDIRETOR &4"
+      permissao: "haumea.tag.diretor"
+      categoria: "staff"
+    gerente:
+      display: "&c&lGERENTE"
+      prefixo: "&c&lGERENTE &c"
+      permissao: "haumea.tag.gerente"
+      categoria: "staff"
+    admin:
+      display: "&c&lADMIN"
+      prefixo: "&c&lADMIN &c"
+      permissao: "haumea.tag.admin"
+      categoria: "staff"
+    modplus:
+      display: "&5&lMOD+"
+      prefixo: "&5&lMOD+ &5"
+      permissao: "haumea.tag.modplus"
+      categoria: "staff"
+    modgc:
+      display: "&5&lMODGC"
+      prefixo: "&5&lMODGC &5"
+      permissao: "haumea.tag.modgc"
+      categoria: "staff"
+    mod:
+      display: "&5&lMOD"
+      prefixo: "&5&lMOD &5"
+      permissao: "haumea.tag.mod"
+      categoria: "staff"
+    trial:
+      display: "&d&lTRIAL"
+      prefixo: "&d&lTRIAL &d"
+      permissao: "haumea.tag.trial"
+      categoria: "staff"
+    builder:
+      display: "&e&lBUILDER"
+      prefixo: "&e&lBUILDER &e"
+      permissao: "haumea.tag.builder"
+      categoria: "staff"
+    ajudante:
+      display: "&9&lAJUDANTE"
+      prefixo: "&9&lAJUDANTE &9"
+      permissao: "haumea.tag.ajudante"
+      categoria: "staff"
+    # ============ VIP ============
+    ultra:
+      display: "&d&lULTRA"
+      prefixo: "&d&lULTRA &d"
+      permissao: "haumea.tag.ultra"
+      categoria: "vip"
+    beta:
+      display: "&1&lBETA"
+      prefixo: "&1&lBETA &1"
+      permissao: "haumea.tag.beta"
+      categoria: "vip"
+    premium:
+      display: "&6&lPREMIUM"
+      prefixo: "&6&lPREMIUM &6"
+      permissao: "haumea.tag.premium"
+      categoria: "vip"
+    light:
+      display: "&a&lLIGHT"
+      prefixo: "&a&lLIGHT &a"
+      permissao: "haumea.tag.light"
+      categoria: "vip"
+    midiaplus:
+      display: "&3&lMIDIA+"
+      prefixo: "&3&lMIDIA+ &3"
+      permissao: "haumea.tag.midiaplus"
+      categoria: "vip"
+    midia:
+      display: "&b&lMIDIA"
+      prefixo: "&b&lMIDIA &b"
+      permissao: "haumea.tag.midia"
+      categoria: "vip"
+    designer:
+      display: "&2&lDESIGNER"
+      prefixo: "&2&lDESIGNER &2"
+      permissao: "haumea.tag.designer"
+      categoria: "vip"
+    # ============ FESTIVAS ============
+    natal:
+      display: "&c&lNATAL"
+      prefixo: "&c&lNATAL &c"
+      permissao: "haumea.tag.natal"
+      categoria: "festiva"
+    pascoa:
+      display: "&d&lPASCOA"
+      prefixo: "&d&lPASCOA &d"
+      permissao: "haumea.tag.pascoa"
+      categoria: "festiva"
+    spooky:
+      display: "&5&lSPOOKY"
+      prefixo: "&5&lSPOOKY &5"
+      permissao: "haumea.tag.spooky"
+      categoria: "festiva"
+    samba:
+      display: "&a&lSAMBA"
+      prefixo: "&a&lSAMBA &a"
+      permissao: "haumea.tag.samba"
+      categoria: "festiva"
+    virada:
+      display: "&6&lVIRADA"
+      prefixo: "&6&lVIRADA &6"
+      permissao: "haumea.tag.virada"
+      categoria: "festiva"
+    arraia:
+      display: "&e&lARRAIA"
+      prefixo: "&e&lARRAIA &e"
+      permissao: "haumea.tag.arraia"
+      categoria: "festiva"
+    crush:
+      display: "&d&lCRUSH"
+      prefixo: "&d&lCRUSH &d"
+      permissao: "haumea.tag.crush"
+      categoria: "festiva"
+    # ============ COMUM ============
+    normal:
+      display: "&7&lNORMAL"
+      prefixo: "&7"
+      permissao: "haumea.tag.normal"
+      categoria: "comum"
+
+# ========================================
+#              COOLDOWNS
+# ========================================
+# Configuração de tempos de espera (em segundos)
+# Use -1 para desativar o cooldown
+
+cooldowns:
+  # Comandos gerais
+  comandos:
+    tell: 2          # Mensagem privada
+    report: 30       # Reportar jogador
+    pay: 5           # Enviar coins
+    trade: 10        # Solicitar trade
+  
+  # Sistema de kits
+  kits:
+    selecionar: 0    # Trocar de kit (0 = sem cooldown no spawn)
+    habilidade: 5    # Usar habilidade de kit
+  
+  # Teleporte
+  teleporte:
+    warp: 3          # Usar /warp
+    spawn: 3         # Usar /spawn
+    warmup: 3        # Tempo de preparação antes de teleportar
+  
+  # Sistema de combate
+  combate:
+    sopa: 0          # Usar sopa (0 = sem cooldown)
+    attack: 0        # Atacar (0 = vanilla)
+  
+  # Itens especiais
+  itens:
+    supply: 30       # Coletar suprimentos
+    kit_preview: 1   # Visualizar kit
+# ========================================
+#           ANTIFLOOD & ANTISPAM
+# ========================================
+# Sistema INTELIGENTE que detecta:
+# - FLOOD: Muitas mensagens em pouco tempo
+# - SPAM: Mensagens iguais/similares consecutivas
+#
+# NÃO limita mensagens normais!
+# Permissão de bypass: haumea.chat.bypass.flood
+antiflood:
+  # === DETECÇÃO DE FLOOD (VOLUME) ===
+  # Detecta muitas mensagens em pouco tempo
+  max-messages: 5        # Máximo de mensagens
+  window-seconds: 3      # Em X segundos
+  # Ex: 5 mensagens em 3 segundos = FLOOD
+  
+  # === DETECÇÃO DE SPAM (REPETIÇÃO) ===
+  # Detecta mensagens iguais/similares CONSECUTIVAS (independente do tempo!)
+  consecutive-similar: 3        # Quantas mensagens similares consecutivas = spam
+  similarity-threshold: 0.7     # Quanto similar (0.0 a 1.0, 0.7 = 70% igual)
+  history-size: 10              # Quantas mensagens guardar no histórico
+  # Ex: Enviar "oi" 3 vezes seguidas = SPAM
+  
+  # === PUNIÇÃO ===
+  punishment-seconds: 5         # Silenciado por X segundos
+  punishment-multiplier: 2.0    # Dobra por reincidência (5s, 10s, 20s...)
+  max-punishment-seconds: 60    # Máximo de 60 segundos
+  
+  # === RESET ===
+  violation-decay-seconds: 120  # Violações resetam após 2 min de bom comportamento
+
+# ========================================
+#              SISTEMA DE CASSINO
+# ========================================
+# Sistema de jogos de azar e apostas
+# Jogadores podem apostar coins em diversos jogos
+
+casino:
+  # Habilitar/desabilitar todo o sistema
+  enabled: true
+  
+  # Slot na hotbar do spawn (0-8)
+  hotbar-slot: 2
+  
+  # Só permite jogar no spawn
+  only-in-spawn: true
+  
+  # Limites de apostas
+  limits:
+    min-bet: 100
+    max-bet: 100000
+    # Limite diário de perdas (0 = desabilitado)
+    daily-loss-limit: 500000
+  
+  # Valores de aposta pré-definidos (aparecem nos menus)
+  preset-bets:
+    - 100
+    - 500
+    - 1000
+    - 5000
+    - 10000
+  
+  # Permitir aposta customizada
+  allow-custom-bet: true
+  
+  # Taxa da casa (porcentagem removida do prêmio)
+  house-edge:
+    coinflip: 5  # 5% = 2 jogadores apostam 1000 cada, vencedor recebe 1900
+  
+  # Probabilidades do Slots (devem somar 100)
+  slots:
+    lose: 55
+    two-match: 30
+    three-common: 10
+    three-rare: 4
+    # jackpot = 100 - (55+30+10+4) = 1%
+  
+  # Multiplicadores de prêmio
+  multipliers:
+    slots:
+      two-match: 1.5
+      three-common: 3.0
+      three-rare: 10.0
+      jackpot: 25.0
+    blackjack:
+      win: 2.0
+      natural: 2.5
+  
+  # Configurações do Crash
+  crash:
+    # Segundos entre rodadas
+    round-interval: 30
+  
+  # Broadcasts de vitórias grandes
+  broadcasts:
+    # Valor mínimo para broadcast
+    big-win-threshold: 50000
+    # Habilitar broadcasts
+    jackpot: true
+    coinflip: true
+
+# Mensagens do Plugin
+mensagens:
+  tag:
+    sem-permissao: "&cVocê não tem permissão para usar esta tag!"
+    tag-selecionada: "&aVocê selecionou a tag %tag%&a!"
+    tag-nao-existe: "&cEsta tag não existe!"
+    ja-usando: "&cVocê já está usando esta tag!"
+

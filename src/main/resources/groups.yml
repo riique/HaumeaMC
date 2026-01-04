@@ -1,0 +1,237 @@
+# ========================================
+#       HaumeaMC - Grupos e Permissões
+#            Servidor HaumeaMC
+# ========================================
+# 
+# ATENÇÃO: Este arquivo só pode ser modificado
+# através do comando /hgroup pelo CONSOLE!
+#
+# Estrutura de um grupo:
+#   nome:
+#     prefix: "&cor&lTAG " (prefixo no chat/tab)
+#     display: "Nome de Exibição"
+#     priority: 100 (maior = mais importante)
+#     permissions: (lista de permissões)
+#     inheritance: (grupos que herda)
+#
+# ========================================
+
+groups:
+  # ============ STAFF ============
+  
+  dono:
+    prefix: "&4&lDONO &4"
+    display: "Dono"
+    priority: 1000
+    permissions:
+      - "*"
+      - "haumea.tag.*"
+      - "haumea.fake"
+    inheritance: []
+    
+  diretor:
+    prefix: "&4&lDIRETOR &4"
+    display: "Diretor"
+    priority: 900
+    permissions:
+      - "haumea.tag.diretor"
+      - "haumea.tag.gerente"
+      - "haumea.tag.admin"
+      - "haumea.tag.modplus"
+      - "haumea.tag.modgc"
+      - "haumea.tag.mod"
+      - "haumea.tag.trial"
+      - "haumea.tag.normal"
+    inheritance:
+      - gerente
+    
+  gerente:
+    prefix: "&c&lGERENTE &c"
+    display: "Gerente"
+    priority: 800
+    permissions:
+      - "haumea.tag.gerente"
+      - "haumea.tag.admin"
+      - "haumea.tag.modplus"
+      - "haumea.tag.modgc"
+      - "haumea.tag.mod"
+      - "haumea.tag.trial"
+      - "haumea.tag.normal"
+    inheritance:
+      - admin
+    
+  admin:
+    prefix: "&c&lADMIN &c"
+    display: "Admin"
+    priority: 700
+    permissions:
+      - "haumea.tag.admin"
+      - "haumea.tag.modplus"
+      - "haumea.tag.modgc"
+      - "haumea.tag.mod"
+      - "haumea.tag.trial"
+      - "haumea.tag.normal"
+    inheritance:
+      - modplus
+    
+  modplus:
+    prefix: "&5&lMOD+ &5"
+    display: "Mod+"
+    priority: 600
+    permissions:
+      - "haumea.tag.modplus"
+      - "haumea.tag.modgc"
+      - "haumea.tag.mod"
+      - "haumea.tag.trial"
+      - "haumea.tag.normal"
+    inheritance:
+      - modgc
+    
+  modgc:
+    prefix: "&5&lMODGC &5"
+    display: "ModGC"
+    priority: 550
+    permissions:
+      - "haumea.tag.modgc"
+      - "haumea.tag.mod"
+      - "haumea.tag.trial"
+      - "haumea.tag.normal"
+    inheritance:
+      - mod
+    
+  mod:
+    prefix: "&5&lMOD &5"
+    display: "Mod"
+    priority: 500
+    permissions:
+      - "haumea.tag.mod"
+      - "haumea.tag.trial"
+      - "haumea.tag.normal"
+    inheritance:
+      - trial
+    
+  trial:
+    prefix: "&d&lTRIAL &d"
+    display: "Trial"
+    priority: 400
+    permissions:
+      - "haumea.tag.trial"
+      - "haumea.tag.normal"
+    inheritance:
+      - membro
+    
+  # ============ OUTROS STAFF ============
+  
+  builder:
+    prefix: "&e&lBUILDER &e"
+    display: "Builder"
+    priority: 350
+    permissions:
+      - "haumea.tag.builder"
+      - "haumea.tag.normal"
+    inheritance:
+      - membro
+    
+  ajudante:
+    prefix: "&9&lAJUDANTE &9"
+    display: "Ajudante"
+    priority: 300
+    permissions:
+      - "haumea.tag.ajudante"
+      - "haumea.tag.normal"
+    inheritance:
+      - membro
+    
+  # ============ MIDIA ============
+  
+  midiaplus:
+    prefix: "&3&lMIDIA+ &3"
+    display: "Midia+"
+    priority: 250
+    permissions:
+      - "haumea.tag.midiaplus"
+      - "haumea.tag.midia"
+      - "haumea.tag.normal"
+    inheritance:
+      - midia
+    
+  midia:
+    prefix: "&b&lMIDIA &b"
+    display: "Midia"
+    priority: 200
+    permissions:
+      - "haumea.tag.midia"
+      - "haumea.tag.normal"
+    inheritance:
+      - membro
+    
+  # ============ VIP ============
+  
+  ultra:
+    prefix: "&d&lULTRA &d"
+    display: "Ultra"
+    priority: 140
+    permissions:
+      - "haumea.tag.ultra"
+      - "haumea.tag.beta"
+      - "haumea.tag.premium"
+      - "haumea.tag.light"
+      - "haumea.tag.normal"
+    inheritance:
+      - beta
+    
+  beta:
+    prefix: "&1&lBETA &1"
+    display: "Beta"
+    priority: 130
+    permissions:
+      - "haumea.tag.beta"
+      - "haumea.tag.premium"
+      - "haumea.tag.light"
+      - "haumea.tag.normal"
+    inheritance:
+      - premium
+    
+  premium:
+    prefix: "&6&lPREMIUM &6"
+    display: "Premium"
+    priority: 120
+    permissions:
+      - "haumea.tag.premium"
+      - "haumea.tag.light"
+      - "haumea.tag.normal"
+    inheritance:
+      - light
+    
+  light:
+    prefix: "&a&lLIGHT &a"
+    display: "Light"
+    priority: 110
+    permissions:
+      - "haumea.tag.light"
+      - "haumea.tag.normal"
+    inheritance:
+      - membro
+    
+  # ============ OUTROS ============
+  
+  designer:
+    prefix: "&2&lDESIGNER &2"
+    display: "Designer"
+    priority: 100
+    permissions:
+      - "haumea.tag.designer"
+      - "haumea.tag.normal"
+    inheritance:
+      - membro
+    
+  # ============ PADRÃO ============
+  
+  membro:
+    prefix: "&7"
+    display: "Membro"
+    priority: 0
+    permissions:
+      - "haumea.tag.normal"
+      - "haumea.tag"
+    inheritance: []

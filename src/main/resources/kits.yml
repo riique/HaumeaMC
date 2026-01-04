@@ -1,0 +1,376 @@
+# ==============================================================================
+# HaumeaMC - Configuração de Kits (Abilities)
+# ==============================================================================
+# Este arquivo define todos os kits disponíveis no servidor.
+#
+# Cada kit pode ter:
+#   - display: Nome colorido do kit (use & para cores)
+#   - icon: Material do ícone (nome do enum Material do Bukkit)
+#   - icon-data: Data value do ícone (para variantes)
+#   - description: Lista de linhas de descrição
+#   - price: Preço para alugar por 1 semana (0 = gratuito)
+#   - permission: Permissão necessária para usar o kit
+#   - incompatible: Lista de kits incompatíveis
+#   - default: Se true, todos os jogadores têm acesso
+#   - rarity: Raridade do kit (COMMON, RARE, EPIC, LEGENDARY, MYSTIC)
+#   - cooldown: Cooldown da habilidade em segundos
+# ==============================================================================
+
+kits:
+  # ===================== KIT PADRÃO =====================
+  pvp:
+    display: "&a&lPvP"
+    icon: STONE_SWORD
+    icon-data: 0
+    description:
+      - "&7Kit básico de combate."
+      - ""
+      - "&eNenhuma habilidade especial."
+    price: 0
+    permission: "haumea.kit.pvp"
+    incompatible: []
+    default: true
+    rarity: COMMON
+    cooldown: 0
+
+  # ===================== KITS RARE =====================
+  fireman:
+    display: "&9&lFireman"
+    icon: WATER_BUCKET
+    icon-data: 0
+    description:
+      - "&7Bombeiro do servidor!"
+      - ""
+      - "&eHabilidade: &fImunidade total"
+      - "&ea fogo, lava e fire tick."
+    price: 800
+    permission: "haumea.kit.fireman"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 0
+
+  fisherman:
+    display: "&9&lFisherman"
+    icon: FISHING_ROD
+    icon-data: 0
+    description:
+      - "&7Pescador mortal!"
+      - ""
+      - "&eHabilidade: &fPuxa jogadores"
+      - "&ecom a vara de pesca."
+      - "&7Cooldown: &f3s"
+    price: 1000
+    permission: "haumea.kit.fisherman"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 3
+
+  flash:
+    display: "&9&lFlash"
+    icon: REDSTONE_TORCH_ON
+    icon-data: 0
+    description:
+      - "&7Velocidade da luz!"
+      - ""
+      - "&eHabilidade: &fTeleporta para"
+      - "&eo bloco que está olhando."
+      - "&7Alcance: &f200 blocos"
+      - "&7Cooldown: &f15s"
+    price: 2000
+    permission: "haumea.kit.flash"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 15
+
+  magma:
+    display: "&9&lMagma"
+    icon: MAGMA_CREAM
+    icon-data: 0
+    description:
+      - "&7Criatura de lava!"
+      - ""
+      - "&eHabilidade: &fImunidade a fogo"
+      - "&e+ 10% de chance de queimar"
+      - "&eo atacante."
+    price: 1000
+    permission: "haumea.kit.magma"
+    incompatible:
+      - fireman
+    default: false
+    rarity: RARE
+    cooldown: 0
+
+  ninja:
+    display: "&9&lNinja"
+    icon: NETHER_STAR
+    icon-data: 0
+    description:
+      - "&7Mestre das sombras!"
+      - ""
+      - "&eHabilidade: &fAo agachar, teleporta"
+      - "&epara as costas do último"
+      - "&ejogador que você atacou."
+      - "&7Cooldown: &f5s"
+    price: 1500
+    permission: "haumea.kit.ninja"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 5
+
+  snail:
+    display: "&9&lSnail"
+    icon: SOUL_SAND
+    icon-data: 0
+    description:
+      - "&7Lento, mas mortal!"
+      - ""
+      - "&eHabilidade: &fAplica Slowness"
+      - "&enos jogadores atacados."
+    price: 700
+    permission: "haumea.kit.snail"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 0
+
+  spider:
+    display: "&9&lSpider"
+    icon: WEB
+    icon-data: 0
+    description:
+      - "&7Aranha venenosa!"
+      - ""
+      - "&eHabilidade: &fLança teias que"
+      - "&eprendem inimigos temporariamente."
+      - "&7Cooldown: &f3s"
+    price: 1200
+    permission: "haumea.kit.spider"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 3
+
+  steelhead:
+    display: "&9&lSteelhead"
+    icon: GOLD_HELMET
+    icon-data: 0
+    description:
+      - "&7Cabeça de aço!"
+      - ""
+      - "&eHabilidade: &fAnula completamente"
+      - "&eo dano do kit Stomper."
+    price: 2200
+    permission: "haumea.kit.steelhead"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 0
+
+  thor:
+    display: "&9&lThor"
+    icon: WOOD_AXE
+    icon-data: 0
+    description:
+      - "&7O deus do trovão!"
+      - ""
+      - "&eHabilidade: &fInvoca raios com"
+      - "&eo martelo Mjölnir."
+      - "&7Cooldown: &f7s"
+    price: 1200
+    permission: "haumea.kit.thor"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 7
+
+  viper:
+    display: "&9&lViper"
+    icon: SPIDER_EYE
+    icon-data: 0
+    description:
+      - "&7Víbora venenosa!"
+      - ""
+      - "&eHabilidade: &f~54% de chance"
+      - "&ede envenenar ao atacar."
+    price: 800
+    permission: "haumea.kit.viper"
+    incompatible: []
+    default: false
+    rarity: RARE
+    cooldown: 0
+
+  # ===================== KITS EPIC =====================
+  anchor:
+    display: "&5&lAnchor"
+    icon: ANVIL
+    icon-data: 0
+    description:
+      - "&7Imóvel como uma âncora!"
+      - ""
+      - "&eHabilidade: &fRemove knockback"
+      - "&eao atacar ou ser atacado."
+    price: 1500
+    permission: "haumea.kit.anchor"
+    incompatible: []
+    default: false
+    rarity: EPIC
+    cooldown: 0
+
+  neo:
+    display: "&5&lNeo"
+    icon: ARROW
+    icon-data: 0
+    description:
+      - "&7Desvia de tudo!"
+      - ""
+      - "&eHabilidade: &fImunidade total"
+      - "&ea projéteis (flechas, snowballs)."
+      - "&cBloqueado por: &fGladiator, Switcher"
+    price: 300
+    permission: "haumea.kit.neo"
+    incompatible:
+      - gladiator
+      - switcher
+    default: false
+    rarity: EPIC
+    cooldown: 0
+
+  quickdrop:
+    display: "&5&lQuickdrop"
+    icon: BOWL
+    icon-data: 0
+    description:
+      - "&7Sopeiro profissional!"
+      - ""
+      - "&eHabilidade: &fDrop automático"
+      - "&ede bowls vazios ao usar sopa."
+    price: 200
+    permission: "haumea.kit.quickdrop"
+    incompatible: []
+    default: false
+    rarity: EPIC
+    cooldown: 0
+
+  switcher:
+    display: "&5&lSwitcher"
+    icon: SNOW_BALL
+    icon-data: 0
+    description:
+      - "&7Troca de lugar!"
+      - ""
+      - "&eHabilidade: &fAo acertar snowball"
+      - "&etroca de posição com o alvo."
+      - "&cNão funciona em: &fNeo"
+      - "&7Cooldown: &f2s"
+    price: 2000
+    permission: "haumea.kit.switcher"
+    incompatible:
+      - neo
+    default: false
+    rarity: EPIC
+    cooldown: 2
+
+  # ===================== KITS LEGENDARY =====================
+  grappler:
+    display: "&6&lGrappler"
+    icon: LEASH
+    icon-data: 0
+    description:
+      - "&7Gancho letal!"
+      - ""
+      - "&eHabilidade: &fDefine um ponto"
+      - "&ecom clique esquerdo e puxa-se"
+      - "&eaté ele com clique direito."
+      - "&7Cooldown: &f5s"
+    price: 2000
+    permission: "haumea.kit.grappler"
+    incompatible: []
+    default: false
+    rarity: LEGENDARY
+    cooldown: 5
+
+  # ===================== KITS MYSTIC =====================
+  gladiator:
+    display: "&d&lGladiator"
+    icon: IRON_FENCE
+    icon-data: 0
+    description:
+      - "&7Arena pessoal!"
+      - ""
+      - "&eHabilidade: &fCria uma arena"
+      - "&ede vidro no céu com o alvo."
+      - "&cBloqueia: &fNeo (imune)"
+      - "&7Cooldown: &f5s"
+    price: 2500
+    permission: "haumea.kit.gladiator"
+    incompatible:
+      - neo
+    default: false
+    rarity: MYSTIC
+    cooldown: 5
+
+  jumper:
+    display: "&d&lJumper"
+    icon: EYE_OF_ENDER
+    icon-data: 0
+    description:
+      - "&7Viaje com a pearl!"
+      - ""
+      - "&eHabilidade: &fLança uma ender pearl"
+      - "&ee viaja montado nela."
+      - "&7Imune a queda durante o voo"
+      - "&7Cooldown: &f10s"
+    price: 2500
+    permission: "haumea.kit.jumper"
+    incompatible: []
+    default: false
+    rarity: MYSTIC
+    cooldown: 10
+
+  kangaroo:
+    display: "&d&lKangaroo"
+    icon: FIREWORK
+    icon-data: 0
+    description:
+      - "&7Saltos incríveis!"
+      - ""
+      - "&eHabilidade: &fPulos duplos."
+      - "&eEm pé = alto, Shift = longo."
+      - "&7Dano de queda limitado"
+      - "&7Cooldown: &f5s"
+    price: 2000
+    permission: "haumea.kit.kangaroo"
+    incompatible: []
+    default: false
+    rarity: MYSTIC
+    cooldown: 5
+
+  stomper:
+    display: "&d&lStomper"
+    icon: IRON_BOOTS
+    icon-data: 0
+    description:
+      - "&7Queda devastadora!"
+      - ""
+      - "&eHabilidade: &fTransfere dano de"
+      - "&equeda para jogadores próximos."
+      - "&cBloqueado por: &fSteelhead, Agachar"
+    price: 3000
+    permission: "haumea.kit.stomper"
+    incompatible:
+      - steelhead
+    default: false
+    rarity: MYSTIC
+    cooldown: 0
+
+# ==============================================================================
+# Dados de aluguel de kits (preenchido automaticamente pelo sistema)
+# ==============================================================================
+# rented:
+#   uuid-do-jogador:
+#     kit-name: timestamp-de-expiracao
+# ==============================================================================

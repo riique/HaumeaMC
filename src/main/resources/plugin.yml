@@ -1,0 +1,359 @@
+name: HaumeaPVP
+version: ${project.version}
+main: com.haumea.kitpvp.HaumeaMC
+author: HaumeaMC
+description: Plugin completo para o servidor HaumeaMC
+api-version: 1.8
+
+# ProtocolLib é opcional - quando presente, habilita login premium automático
+softdepend: [ProtocolLib]
+
+commands:
+  tag:
+    description: Gerencia suas tags
+    usage: /<command> [nome da tag]
+    aliases: [tags]
+    
+  haumeagroups:
+    description: Gerencia múltiplos grupos dos jogadores (Dono/Diretor/Gerente)
+    usage: /<command> <add|remove|list|info|reload> [args]
+    aliases: [haumeagrupos, haumeagrupo, haumeagroup, hgroups, hgroup, setgroup, grupos]
+
+  # Comandos Essenciais
+  tp:
+    description: Teleporta você até um jogador
+    usage: /<command> <jogador>
+    
+  tpall:
+    description: Teleporta todos os jogadores até você
+    usage: /<command>
+    
+  puxar:
+    description: Traz um jogador até você
+    usage: /<command> <jogador>
+    
+  inv:
+    description: Abre o inventário de outro jogador
+    usage: /<command> <jogador>
+    aliases: [invsee, inventario]
+    
+  kill:
+    description: Mata um jogador instantaneamente
+    usage: /<command> <jogador>
+    
+  ipcheck:
+    description: Mostra o IP de um jogador
+    usage: /<command> <jogador>
+    aliases: [ip]
+    
+  bc:
+    description: Envia mensagem global para o servidor
+    usage: /<command> <mensagem>
+    aliases: [broadcast, anuncio]
+    
+  tell:
+    description: Envia mensagem privada
+    usage: /<command> <jogador> <mensagem>
+    aliases: [msg, w, whisper, pm]
+    
+  ping:
+    description: Mostra seu ping ou de outro jogador
+    usage: /<command> [jogador]
+    aliases: [latency, latencia]
+    
+  regras:
+    description: Mostra as regras do servidor
+    usage: /<command>
+    aliases: [rules]
+    
+  conta:
+    description: Mostra estatísticas do jogador
+    usage: /<command> [jogador]
+    aliases: [stats, estatisticas, account]
+
+  score:
+    description: Ativa ou desativa a scoreboard
+    usage: /<command> <on/off>
+    aliases: [scoreboard, sb]
+
+  haumeawarp:
+    description: Gerencia as warps do servidor (Admin)
+    usage: /<command> <set|del|tp|list|reload> [nome]
+    aliases: [hwarp, warpadmin]
+    permission: haumea.warp.admin
+
+  warp:
+    description: Teleporta para uma warp
+    usage: /<command> <nome>
+    aliases: [warps, ir]
+
+  spawn:
+    description: Teleporta ao spawn do servidor
+    usage: /<command>
+    aliases: [lobby]
+
+  haumeaspawn:
+    description: Define o spawn do servidor e raio de proteção (Admin)
+    usage: /<command> [raio em blocos]
+    aliases: [setspawn, hspawn]
+    permission: haumea.spawn.admin
+
+  medalha:
+    description: Gerencia suas medalhas
+    usage: /<command> [nome da medalha]
+    aliases: [medal, medals, medalhas]
+
+  fake:
+    description: Altera seu nome de exibição (Fake Nick)
+    usage: /<command> <nome|random|reset>
+    aliases: [nick, fakenick]
+
+  ranking:
+    description: Abre o menu de ranking/ligas
+    usage: /<command>
+    aliases: [rank, elo, league, liga, ligas]
+
+  # Comandos de Duelo 1v1
+  duel:
+    description: Sistema de duelos 1v1 - desafiar jogadores e gerenciar duelos
+    usage: /<command> <jogador|accept|deny|fila|stats>
+    aliases: [duelo, 1v1, x1]
+
+  dueladmin:
+    description: Comandos administrativos para o sistema de duelos
+    usage: /<command> <setarena|delarena|listarenas|setlobby|forceend|reload>
+    aliases: [da, dueladm]
+
+  # Comandos de Evento
+  evento:
+    description: Sistema de eventos especiais do servidor
+    usage: /<command> [subcomando]
+    aliases: [event, events, eventos]
+
+  # Comandos de Feast
+  feast:
+    description: Sistema de Feast - baús com itens valiosos
+    usage: /<command> <start|stop|timer|addchest|removechest|list|status|reload>
+    aliases: [feasts]
+    permission: haumea.feast.admin
+
+  # Comandos de Multiplicadores
+  multiplicador:
+    description: Gerencia seus multiplicadores de coins
+    usage: /<command> [status|lista|ativar <tipo>]
+    aliases: [multi, mult, mp]
+
+  multadmin:
+    description: Administração de multiplicadores (Staff)
+    usage: /<command> <give|remove|activate|clear|check|list>
+    aliases: [multiplicadoradmin, mpadmin]
+
+  # Comando de Administração de Estatísticas
+  haumeastats:
+    description: Gerencia estatisticas de jogadores (Admin)
+    usage: /<command> <jogador> <add|set|remove> <kills|deaths|streak|elo|moedas> <valor>
+    aliases: [hstats, statsadmin]
+    permission: haumea.admin.stats
+
+  # Comando de VIP Keys
+  haumeavip:
+    description: Sistema de chaves VIP - ativar e gerenciar chaves
+    usage: /<command> <código|criar|listar|check|deletar|info>
+    aliases: [hvip, vipkey, vipkeys]
+
+  # Comando de NPC (Lobby)
+  npc:
+    description: Gerencia NPCs clicaveis do Lobby
+    usage: /<command> <create|remove|list|tp|setskin|reload>
+    aliases: [npcs, lobbynpc]
+    permission: haumea.admin.npc
+
+permissions:
+  # Permissão de Fake Nick
+  haumea.fake:
+    description: Permite usar o sistema de Fake Nick
+    default: false
+
+  # Permissão de Chat Destacado
+  haumea.chat.destaque:
+    description: Mensagens aparecem destacadas com espacos antes e depois
+    default: op
+    
+  haumea.tag:
+    description: Permite usar o comando /tag
+    default: true
+  
+  # Permissões de Tags
+  haumea.tag.*:
+    description: Acesso a todas as tags
+    default: op
+    children:
+      haumea.tag.dono: true
+      haumea.tag.diretor: true
+      haumea.tag.gerente: true
+      haumea.tag.admin: true
+      haumea.tag.modplus: true
+      haumea.tag.modgc: true
+      haumea.tag.mod: true
+      haumea.tag.trial: true
+      haumea.tag.builder: true
+      haumea.tag.ajudante: true
+      haumea.tag.midiaplus: true
+      haumea.tag.midia: true
+      haumea.tag.ultra: true
+      haumea.tag.beta: true
+      haumea.tag.premium: true
+      haumea.tag.light: true
+      haumea.tag.designer: true
+      haumea.tag.normal: true
+      
+  haumea.tag.dono:
+    description: Permite usar a tag Dono
+    default: false
+  haumea.tag.diretor:
+    description: Permite usar a tag Diretor
+    default: false
+  haumea.tag.gerente:
+    description: Permite usar a tag Gerente
+    default: false
+  haumea.tag.admin:
+    description: Permite usar a tag Admin
+    default: false
+  haumea.tag.modplus:
+    description: Permite usar a tag Mod+
+    default: false
+  haumea.tag.modgc:
+    description: Permite usar a tag ModGC
+    default: false
+  haumea.tag.mod:
+    description: Permite usar a tag Mod
+    default: false
+  haumea.tag.trial:
+    description: Permite usar a tag Trial
+    default: false
+  haumea.tag.builder:
+    description: Permite usar a tag Builder
+    default: false
+  haumea.tag.ajudante:
+    description: Permite usar a tag Ajudante
+    default: false
+  haumea.tag.midiaplus:
+    description: Permite usar a tag MIDIA+
+    default: false
+  haumea.tag.midia:
+    description: Permite usar a tag MIDIA
+    default: false
+  haumea.tag.ultra:
+    description: Permite usar a tag Ultra
+    default: false
+  haumea.tag.beta:
+    description: Permite usar a tag Beta
+    default: false
+  haumea.tag.premium:
+    description: Permite usar a tag Premium
+    default: false
+  haumea.tag.light:
+    description: Permite usar a tag Light
+    default: false
+  haumea.tag.designer:
+    description: Permite usar a tag Designer
+    default: false
+  haumea.tag.normal:
+    description: Permite usar a tag Normal
+    default: true
+
+  # Permissões de Medalhas
+  medal.*:
+    description: Acesso a todas as medalhas
+    default: op
+    children:
+      medal.peace_love: true
+      medal.heart: true
+      medal.upset_heart: true
+      medal.smile: true
+      medal.toxic: true
+      medal.ray: true
+      medal.music: true
+      medal.coffee: true
+      medal.radioactive: true
+      medal.skeleton: true
+      medal.umbrella: true
+      medal.halloween_cross: true
+      medal.cross: true
+      medal.wrong: true
+      medal.correct: true
+      medal.yin_yang: true
+      medal.battlebits: true
+      medal.starry: true
+      medal.signal: true
+      medal.student: true
+      medal.email: true
+      medal.f: true
+
+  medal.peace_love:
+    description: Medalha ✌ (Verde)
+    default: false
+  medal.heart:
+    description: Medalha ❤ (Vermelho)
+    default: false
+  medal.upset_heart:
+    description: Medalha ❥ (Vermelho)
+    default: false
+  medal.smile:
+    description: Medalha ツ (Amarelo)
+    default: false
+  medal.toxic:
+    description: Medalha ☣ (Amarelo)
+    default: false
+  medal.ray:
+    description: Medalha ⚡ (Dourado)
+    default: false
+  medal.music:
+    description: Medalha ♫ (Roxo)
+    default: false
+  medal.coffee:
+    description: Medalha ☕ (Cinza Escuro)
+    default: false
+  medal.radioactive:
+    description: Medalha ☢ (Dourado)
+    default: false
+  medal.skeleton:
+    description: Medalha ☠ (Cinza)
+    default: false
+  medal.umbrella:
+    description: Medalha ☂ (Rosa)
+    default: false
+  medal.halloween_cross:
+    description: Medalha ✞ (Branco)
+    default: false
+  medal.cross:
+    description: Medalha ✠ (Cinza)
+    default: false
+  medal.wrong:
+    description: Medalha ✘ (Vermelho Claro)
+    default: false
+  medal.correct:
+    description: Medalha ✔ (Verde)
+    default: false
+  medal.yin_yang:
+    description: Medalha ☯ (Branco)
+    default: false
+  medal.battlebits:
+    description: Medalha ⚔ (Azul)
+    default: false
+  medal.starry:
+    description: Medalha ❄ (Azul Claro)
+    default: false
+  medal.signal:
+    description: Medalha ♻ (Verde Escuro)
+    default: false
+  medal.student:
+    description: Medalha ✍ (Amarelo)
+    default: false
+  medal.email:
+    description: Medalha ✉ (Amarelo)
+    default: false
+  medal.f:
+    description: Medalha Ⓕ (Branco)
+    default: false
+

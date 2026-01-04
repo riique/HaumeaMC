@@ -1,0 +1,2278 @@
+# ==============================================================================
+#                        HAUMEAMC - ARQUIVO DE MENSAGENS
+# ==============================================================================
+# Este arquivo contem todas as mensagens do plugin KitPvP.
+# Voce pode alterar textos, cores e formatacoes aqui.
+#
+# Suporte a cores:
+# - Use '&' para cores (ex: &a para verde claro)
+# - Use '{nl}' para pular linha (se suportado pelo sistema)
+#
+# Variaveis:
+# - A maioria das mensagens suporta variaveis como {player}, {amount}, etc.
+# - Nao remova variaveis essenciais das mensagens.
+# ==============================================================================
+
+# ==============================================================================
+# 1. SISTEMA (Prefixos, Cores, Erros Gerais, Sucesso)
+# ==============================================================================
+system:
+  prefix:
+    general: "&6&lHAUMEA&f&lMC&8 >>&f "
+    tags: "&9&lTAGS&f "
+    error: "&c&lERRO&f "
+    success: "&a&lSUCESSO&f "
+    admin: "&4&lADMIN&f "
+    groups: "&6&lHAUMEAGROUPS&f "
+    staff-broadcast: "&e&l[HAUMEA-STAFF] &f"
+    punishment: "&4&lPUNISH &f"
+    event: "&6&lEVENTO &8>> &f"
+    feast: "&6&lFEAST &8>> &f"
+    premium: "&b&lPREMIUM &8>> &f"
+    auth: "&e&lAUTH &8>> &f"
+    multiplier: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f"
+    vip: "&6&lVIP &8>> &f"
+    ability: "&6&lHAUMEAMC&f "
+    bounty: "&6&lBOUNTY &8>> &f"
+  
+  color:
+    primary: "&6"
+    secondary: "&f"
+    highlight: "&e"
+    error: "&c"
+    success: "&a"
+    info: "&7"
+  
+  separator: "&8&m----------------------------------------"
+
+# ==============================================================================
+# 1.1 ANTIFLOOD & ANTISPAM (Sistema Inteligente)
+# ==============================================================================
+# O sistema NÃO bloqueia mensagens normais!
+# FLOOD = muitas mensagens em pouco tempo
+# SPAM = mensagens iguais/similares consecutivas
+antiflood:
+  # Mensagem quando FLOOD é detectado (muitas mensagens rápidas)
+  detected-flood: |
+    
+    &c&lX FLOOD DETECTADO!
+    
+      &fVoce enviou &cmensagens demais &fem pouco tempo!
+      &7Voce foi silenciado por &e{time}s&7.
+    
+      &8Dica: Espere um pouco antes de enviar mais mensagens.
+    
+  
+  # Mensagem quando SPAM é detectado (mensagens repetidas)
+  detected-spam: |
+    
+    &e&lX SPAM DETECTADO!
+    
+      &fVoce esta enviando &emensagens repetidas&f!
+      &7Voce foi silenciado por &e{time}s&7.
+    
+      &8Dica: Evite repetir a mesma mensagem varias vezes.
+    
+  
+  # Mensagem quando tenta falar mas ainda está punido
+  still-punished: |
+    
+    &c&l[!] SILENCIADO
+    
+      &7Voce ainda esta em cooldown.
+      &7Aguarde mais &e{time}s &7para enviar mensagens.
+    
+
+
+error:
+  no-permission: "&c&lERRO&f Voce nao tem permissao para isso!"
+  player-only: "&c&lERRO&f Este comando so pode ser executado por jogadores dentro do HaumeaMC."
+  console-only: "&c&lERRO&f Este comando so pode ser executado pelo console."
+  invalid-usage: "&c&lERRO&f Uso incorreto! Utilize: &e{usage}&f."
+  invalid-number: "&c&lERRO&f O valor &e{value}&f nao e um numero valido!"
+  profile-load: "&cErro ao carregar seu perfil!"
+
+success:
+  reload: "&a&lSUCESSO&f Plugin recarregado com sucesso!"
+  save: "&a&lSUCESSO&f Dados salvos com sucesso!"
+  
+server:
+  restart-kick: |
+    
+    &f
+    &6&lHAUMEA&f&lMC
+    
+    &c&lSERVIDOR REINICIANDO
+    
+    &7O servidor está passando por uma
+    &7reinicialização para melhorias.
+    
+    &fVoltamos em alguns instantes!
+    &e&ndiscord.gg/haumeamc
+    &f
+
+# ==============================================================================
+# 2. TAGS E GRUPOS (Tags, HaumeaGroups)
+# ==============================================================================
+tag:
+  selected: "&9&lTAGS&f Voce agora esta &3&lUTILIZANDO&f a tag {tag}&f."
+  no-permission: "&3&lTAGS&f Voce nao possui a &9&lTAG {tag}&f."
+  not-found: "&9&lTAGS&f Esta tag nao existe!"
+  already-using: "&9&lTAGS&f Voce ja esta usando esta tag!"
+  # Legacy (from config.yml migration if needed)
+  menu-title: "&3&lTAGS&f Utilize: /tag para ver suas &9&lTAGS&f ou /tag <nome da tag> para selecionar uma &9&lTAG&f."
+
+group:
+  admin-feedback: "&6&lHAUMEAGROUPS&f O grupo do jogador &e&l{player} &f(&7{uuid}&f) foi &3&lALTERADO&f para {group_display}&f."
+  admin-feedback-temp: "&6&lHAUMEAGROUPS&f O grupo do jogador &e&l{player} &f(&7{uuid}&f) foi &3&lALTERADO&f para {group_display}&f por &e{time}&f."
+  admin-feedback-offline: "&6&lHAUMEAGROUPS&f O grupo do jogador offline &e&l{player} &f(&7{uuid}&f) foi &3&lALTERADO&f para {group_display}&f."
+  player-chat: "&6&lHAUMEAMC&f Seu grupo foi &3&lALTERADO&f para {group_display}&f."
+  player-title: "{group_display}"
+  player-subtitle: "&fSeu grupo foi alterado com sucesso!"
+  staff-broadcast: "&e&l[HAUMEA-STAFF] &fO administrador &e&l{admin} &falterou o grupo de &e&l{player} &fpara {group_display}&f."
+  usage: "&6&lHAUMEAGROUPS&f Utilize: &e/haumeagroups set <jogador> <grupo> [tempo]&f"
+  not-found: "&6&lHAUMEAGROUPS&f O grupo &e{group}&f nao foi encontrado!"
+  player-not-found: "&6&lHAUMEAGROUPS&f Jogador &e{player}&f nao encontrado no servidor!"
+  player-never-joined: "&6&lHAUMEAGROUPS&f O jogador &e{player}&f nunca entrou no servidor!"
+  no-permission: "&c&lSEM PERMISSAO: &cApenas &4Dono&c, &4Diretor&c e &4Gerente&c podem usar este comando!"
+  expired-alert: "&c&lGRUPO EXPIRADO: &cUm ou mais grupos expiraram!"
+  
+  invalid-time-format:
+    - "&c&lERRO: &cFormato de tempo invalido! Use: &e1m, 1h, 1d, 1mo, 1y"
+    - "&7m = minuto, h = hora, d = dia, mo = mes, y = ano"
+
+  help:
+    formats:
+      - "&6  Formatos de Tempo:"
+      - "    &7* &f1m &8- &7Minuto  &7* &f1h &8- &7Hora  &7* &f1d &8- &7Dia"
+      - "    &7* &f1w &8- &7Semana  &7* &f1mo &8- &7Mes  &7* &f1y &8- &7Ano"
+
+# ==============================================================================
+# 2.5. BROADCAST (Sistema de Avisos Premium)
+# ==============================================================================
+broadcast:
+  # Formato do chat - Visual extremamente bonito
+  format:
+    header:
+      - ""
+      - "&8&m------------&r  &6&l* &e&lAVISO DO SERVIDOR &6&l*  &8&m------------&r"
+      - ""
+    message: "         &f&l>> &e{message}"
+    footer:
+      - ""
+      - "&8&m----------------------------------------------------&r"
+      - ""
+  
+  # Título que aparece na tela dos jogadores
+  title:
+    main: "&6&l* AVISO *"
+    subtitle: "&fUm administrador enviou uma mensagem!"
+  
+  # Mensagem enviada para quem usou o comando
+  sent: "&6&lBROADCAST &fSeu aviso foi enviado para &e{count} &fjogadores!"
+
+# ==============================================================================
+# 3. MODERACAO (Staff, Punicoes, Admin)
+# ==============================================================================
+staff:
+  gamemode-changed: "&6&lHAUMEAMC&f Seu modo de jogo foi alterado para &7{mode}&f."
+  gamemode-invalid: "&c&lERRO&f Modo de jogo '&e{input}&f' invalido! Use: 0, 1, 2, 3 ou survival, creative, adventure, spectator."
+  fly-toggle: "&6&lHAUMEAMC&f Seu modo de voo foi &7{status}&f."
+  admin-enter: "&6&lHAUMEAMC&f Voce entrou no modo &c&lADMIN&f."
+  admin-exit: "&6&lHAUMEAMC&f Voce saiu do modo &c&lADMIN&f."
+  build-toggle: "&6&lHAUMEAMC&f Seu modo de construcao foi &7{status}&f."
+  chat-cleared: "&e&lCHAT&f O chat foi limpo por um administrador."
+  staffchat-enter: "&e&lSTAFFCHAT&f Voce &a&lentrou&f no staffchat."
+  staffchat-exit: "&e&lSTAFFCHAT&f Voce &c&lsaiu&f do staffchat."
+  staffchat-message: "&e&l[STAFF] &f{player}: &e{message}"
+  chat-toggle: "&e&lCHAT&f O chat global foi &7{status}&f por um administrador."
+  chat-disabled: "&c&lERRO&f O chat esta desativado no momento!"
+  drops-cleared: "&6&lHAUMEAMC&f Todos os itens do chao foram removidos. (&e{count}&f itens)"
+  god-toggle: "&6&lHAUMEAMC&f Seu modo de imortalidade foi {status}&f."
+  speed-changed: "&6&lHAUMEAMC&f Sua velocidade foi alterada para &e{speed}&f."
+  speed-current: "&6&lHAUMEAMC&f Sua velocidade atual e &e{speed}&f."
+  speed-invalid-range: "&c&lERRO&f A velocidade deve estar entre &e1&f e &e10&f!"
+
+punishment:
+  # Mensagens de notificacao ao receber punicao (MUTE)
+  muted:
+    header: "&8&m----------&r  &6&lX VOCE FOI SILENCIADO X  &8&m----------&r"
+    permanent: "   &fSeu silenciamento e &c&lPERMANENTE&f."
+    temporary: "   &fVoce foi silenciado por &e&l{duration}&f."
+    staff: "   &7Staffer: &f{staff}"
+    reason: "   &7Motivo: &6{reason}"
+    proof: "   &7Prova: &9&n{proof}"
+    appeal: "   &7Apelacao: &bhaumeamc.com/forum"
+    store: "   &7Compre &a&lUNMUTE &7em &bhaumeamc.com/loja"
+    footer: "&8&m-------------------------------------------------&r"
+  
+  # Mensagens de notificacao ao receber punicao (WARN)
+  warned:
+    header: "&8&m----------&r  &e&l[!] VOCE RECEBEU UM AVISO [!]  &8&m----------&r"
+    title: "   &fVoce foi &e&lAVISADO &fpela equipe!"
+    staff: "   &7Staffer: &f{staff}"
+    reason: "   &7Motivo: &e{reason}"
+    proof: "   &7Prova: &9&n{proof}"
+    count: "   &7Total de avisos: &c&l{count}"
+    warning: "   &c&oO acumulo de avisos pode resultar em punicoes mais severas!"
+    footer: "&8&m-------------------------------------------------&r"
+  
+  banned: "&4&lBAN &fVoce foi &c&lBANIDO&f! Motivo: &c{reason} &7| Duracao: &e{duration}"
+  kicked: "&c&lKICK &fVoce foi &c&lEXPULSO&f! Motivo: &c{reason}"
+  unmuted: "&a&lUNMUTE &fVoce foi &a&lDESMUTADO&f!"
+  unbanned: "&a&lUNBAN &fVoce foi &a&lDESBANIDO&f!"
+  
+  # Mensagens comuns de punicao
+  common:
+    proof-required: "&fVoce precisa fornecer uma prova valida (link)!"
+    invalid-time: "&fFormato de tempo invalido! Use: 30d, 1h, 30m, etc."
+    unknown-player: "&fJogador &e{player}&f nunca entrou no servidor!"
+    player-offline: "&fJogador &e{player}&f nao esta online!"
+    player-already-punished: "&fEste jogador ja esta {type}!"
+    current-reason: "&7Motivo atual: &e{reason}"
+    expires-in: "&7Expira em: &e{time}"
+    blocked-owner-title: "&c&l[!] ACAO BLOQUEADA!"
+    blocked-owner-msg: "&fO jogador &e{player} &fe um &4&lDONO &fe nao pode ser punido."
+    blocked-owner-notice: "&7Esta tentativa foi registrada e notificada."
+
+  warn:
+    prefix: "&e&lWARN &f"
+    proof-required: "&e&lWARN &fVoce precisa fornecer uma prova valida (link)!"
+    usage-hint: "&7Uso: &e/warn <nick> <motivo> <prova>"
+    unknown-player: "&e&lWARN &fJogador &e{player}&c nunca entrou no servidor!"
+    blocked-owner: |
+      
+      &c&l[!] ACAO BLOQUEADA!
+      
+      &fO jogador &e{player} &fe um &4&lDONO &fe nao pode ser punido.
+      &7Esta tentativa foi registrada e notificada.
+      
+    broadcast:
+      header: "&8&m===================================&r"
+      title: "  &e&l[!] AVISO APLICADO [!]"
+      msg: "  &f{player} &7({uuid}...) &frecebeu um &e&lAVISO&f!"
+      staff: "  &7Staffer: {staff_tag}{staff}"
+      reason: "  &7Motivo: &e{reason}"
+      proof: "  &7Prova: &9&n{proof}"
+      total: "  &7Total de avisos: &c&l{count}"
+      footer: "&8&m===================================&r"
+      
+    player:
+      header: "&8&m----------------------------------------"
+      title: "&e&lVOCE RECEBEU UM AVISO!"
+      reason: "&fMotivo: &e{reason}"
+      staff: "&fStaff: &7{staff}"
+      total: "&fTotal de avisos: &c{count}"
+      warning: "&7Acumulo de avisos pode resultar em punicoes mais graves!"
+      footer: "&8&m----------------------------------------"
+
+    help:
+      title: "&e&l  WARN &8- &7Sistema de Avisos"
+      usage: "&e  Uso: &f/warn <nick> <motivo> [prova]"
+      args-header: "&6  Argumentos:"
+      args:
+        - "    &7* &fnick &8- &7Nome do jogador a ser avisado"
+        - "    &7* &fmotivo &8- &7Razao do aviso"
+        - "    &7* &fprova &8- &7Link da prova (obrigatorio para Mod/Helper)"
+      examples-header: "&6  Exemplos:"
+      examples:
+        - "    &f/warn Steve \"Flood no chat\" https://prnt.sc/xxx"
+        - "    &f/warn Steve Spam https://prnt.sc/xxx"
+      important:
+        - "&c  [!] A prova e obrigatoria para Moderadores/Helpers."
+        - "&7  Avisos acumulados podem resultar em mute ou ban."
+
+  ban:
+    prefix: "&4&lBAN &f"
+    proof-required: "&4&lBAN &fVoce precisa fornecer uma prova valida (link)!"
+    usage-hint: "&7Uso: &e/ban <nick> <motivo> <tempo> <prova>"
+    invalid-time: "&4&lBAN &fFormato de tempo invalido! Use: 30d, 1h, 30m, etc."
+    unknown-player: "&4&lBAN &fJogador &e{player}&c nunca entrou no servidor!"
+    already-banned: "&4&lBAN &fEste jogador ja esta banido!"
+    
+    broadcast:
+      header: "&8&m===================================&r"
+      title: "  &4&lX JOGADOR BANIDO X"
+      msg: "  &f{player} &7({uuid}...) &ffoi &c&lBANIDO&f!"
+      staff: "  &7Staffer: {staff_tag}{staff}"
+      reason: "  &7Motivo: &c{reason}"
+      duration: "  &7Duracao: &e&l{duration}"
+      proof: "  &7Prova: &9&n{proof}"
+      footer: "&8&m===================================&r"
+
+    help:
+      title: "&4&l  BANIMENTO &8- &7Sistema de Punicoes"
+      usage: "&e  Uso: &f/ban <nick> <motivo> [tempo] [prova]"
+      args-header: "&6  Argumentos:"
+      args:
+        - "    &7* &fnick &8- &7Nome do jogador a ser banido"
+        - "    &7* &fmotivo &8- &7Razao do banimento"
+        - "    &7* &ftempo &8- &7Duracao (30d, 1h, 30m, perm)"
+        - "    &7* &fprova &8- &7Link da prova (obrigatorio para Mod/Helper)"
+      time-formats: "&6  Formatos de Tempo:"
+      time-examples: "    &7* &f30d &8- &730 dias  &7* &f1h &8- &71 hora  &7* &fperm &8- &7Permanente"
+      examples-header: "&6  Exemplos:"
+      examples:
+        - "    &f/ban Steve Hack 30d https://prnt.sc/xxx"
+        - "    &f/ban Steve \"Uso de cheat\" perm https://prnt.sc/xxx"
+      important: "&c  [!] A prova e obrigatoria para Moderadores/Helpers."
+
+  mute:
+    prefix: "&6&lMUTE &f"
+    proof-required: "&6&lMUTE &fVoce precisa fornecer uma prova valida (link)!"
+    usage-hint: "&7Uso: &e/mute <nick> <motivo> <tempo> <prova>"
+    invalid-time: "&6&lMUTE &fFormato de tempo invalido! Use: 30d, 1h, 30m, etc."
+    unknown-player: "&6&lMUTE &fJogador &e{player}&c nunca entrou no servidor!"
+    already-muted: "&6&lMUTE &fEste jogador ja esta mutado!"
+    
+    broadcast:
+      header: "&8&m===================================&r"
+      title: "  &6&lX JOGADOR SILENCIADO X"
+      msg: "  &f{player} &7({uuid}...) &ffoi &6&lMUTADO&f!"
+      staff: "  &7Staffer: {staff_tag}{staff}"
+      reason: "  &7Motivo: &6{reason}"
+      duration: "  &7Duracao: &e&l{duration}"
+      proof: "  &7Prova: &9&n{proof}"
+      footer: "&8&m===================================&r"
+
+    help:
+      title: "&6&l  MUTE &8- &7Sistema de Silenciamento"
+      usage: "&e  Uso: &f/mute <nick> <motivo> [tempo] [prova]"
+      args-header: "&6  Argumentos:"
+      args:
+        - "    &7* &fnick &8- &7Nome do jogador a ser silenciado"
+        - "    &7* &fmotivo &8- &7Razao do silenciamento"
+        - "    &7* &ftempo &8- &7Duracao (30m, 1h, 7d, perm)"
+        - "    &7* &fprova &8- &7Link da prova (obrigatorio para Mod/Helper)"
+      time-formats: "&6  Formatos de Tempo:"
+      time-examples: "    &7* &f30m &8- &730 minutos  &7* &f1h &8- &71 hora  &7* &fperm &8- &7Permanente"
+      examples-header: "&6  Exemplos:"
+      examples:
+        - "    &f/mute Steve Spam 1h https://prnt.sc/xxx"
+        - "    &f/mute Steve \"Ofensa grave\" 7d https://prnt.sc/xxx"
+      important: "&c  [!] A prova e obrigatoria para Moderadores/Helpers."
+
+  kick:
+    prefix: "&c&lKICK &f"
+    proof-required: "&c&lKICK &fVoce precisa fornecer uma prova valida (link)!"
+    usage-hint: "&7Uso: &e/kick <nick> <motivo> <prova>"
+    player-offline: "&c&lKICK &fJogador &e{player}&c nao esta online!"
+    
+    broadcast:
+      header: "&8&m===================================&r"
+      title: "  &c&l[!] JOGADOR EXPULSO [!]"
+      msg: "  &f{player} &7({uuid}...) &ffoi &c&lEXPULSO&f!"
+      staff: "  &7Staffer: {staff_tag}{staff}"
+      reason: "  &7Motivo: &c{reason}"
+      proof: "  &7Prova: &9&n{proof}"
+      footer: "&8&m===================================&r"
+
+    help:
+      title: "&c&l  KICK &8- &7Sistema de Expulsao"
+      usage: "&e  Uso: &f/kick <nick> <motivo> [prova]"
+      args-header: "&6  Argumentos:"
+      args:
+        - "    &7* &fnick &8- &7Nome do jogador a ser expulso"
+        - "    &7* &fmotivo &8- &7Razao da expulsao"
+        - "    &7* &fprova &8- &7Link da prova (obrigatorio para Mod/Helper)"
+      examples-header: "&6  Exemplos:"
+      examples:
+        - "    &f/kick Steve \"Spam no chat\" https://prnt.sc/xxx"
+        - "    &f/kick Steve Flood https://prnt.sc/xxx"
+      important: "&c  [!] A prova e obrigatoria para Moderadores/Helpers."
+
+  unban:
+    prefix: "&a&lUNBAN &f"
+    not-banned: "&a&lUNBAN &fO jogador &e{player}&f nao esta banido!"
+    success: "&a&lUNBAN &fO jogador &e{player}&f foi &a&lDESBANIDO&f com sucesso!"
+    
+    broadcast:
+      header: "&8&m----------------------------------------"
+      msg: "&a&lUNBAN &f{player} &7({uuid}...) &ffoi &a&lDESBANIDO &fpor &e{staff}&f!"
+      footer: "&8&m----------------------------------------"
+
+    help:
+      title: "&a&l  UNBAN &8- &7Remocao de Banimento"
+      usage: "&e  Uso: &f/unban <nick>"
+      args-header: "&6  Argumentos:"
+      args:
+        - "    &7* &fnick &8- &7Nome do jogador a ser desbanido"
+      examples-header: "&6  Exemplos:"
+      examples:
+        - "    &f/unban Steve"
+
+  unmute:
+    prefix: "&a&lUNMUTE &f"
+    not-muted: "&a&lUNMUTE &fO jogador &e{player}&f nao esta mutado!"
+    success: "&a&lUNMUTE &fO jogador &e{player}&f foi &a&lDESMUTADO&f com sucesso!"
+    
+    broadcast:
+      header: "&8&m----------------------------------------"
+      msg: "&a&lUNMUTE &f{player} &7({uuid}...) &ffoi &a&lDESMUTADO &fpor &e{staff}&f!"
+      footer: "&8&m----------------------------------------"
+
+    help:
+      title: "&a&l  UNMUTE &8- &7Remocao de Silenciamento"
+      usage: "&e  Uso: &f/unmute <nick>"
+      args-header: "&6  Argumentos:"
+      args:
+        - "    &7* &fnick &8- &7Nome do jogador a ser desmutado"
+      examples-header: "&6  Exemplos:"
+      examples:
+        - "    &f/unmute Steve"
+
+  screen:
+    ban:
+      permanent:
+        - ""
+        - "&f Voce foi &4&l BANIDO PERMANENTEMENTE"
+        - "&c&l Staffer: &f {staff}"
+        - "&c&l Motivo: &f {reason}"
+        - "&c&l Prova: &f {proof}"
+        - ""
+        - "Foi &e banido incorretamente&f? Peca &e&l APPEAL &f em: &bhaumeamc.com/forum"
+        - ""
+        - "Compre seu &3&l UNBAN &f em &bhaumeamc.com/loja &fpara ter o &3&l ACESSO &f liberado."
+      temporary:
+        - ""
+        - "&f Voce foi &4&l BANIDO TEMPORARIAMENTE"
+        - "&c&l Staffer: &f {staff}"
+        - "&c&l Motivo: &f {reason}"
+        - "&c&l Duracao: &f {time}"
+        - "&c&l Prova: &f {proof}"
+        - ""
+        - "Foi &e banido incorretamente&f? Peca &e&l APPEAL &f em: &bhaumeamc.com/forum"
+        - ""
+        - "Compre seu &3&l UNBAN &f em &bhaumeamc.com/loja &fpara ter o &3&l ACESSO &f liberado."
+    kick:
+      - ""
+      - "&f Voce foi &4&l EXPULSO"
+      - "&c&l Staffer: &f {staff}"
+      - "&c&l Motivo: &f {reason}"
+      - "&c&l Prova: &f {proof}"
+      - ""
+      - "&bhaumeamc.com"
+  protected-alert:
+    - ""
+    - "&4&l! ALERTA DE PROTECAO !"
+    - ""
+    - "&fO staffer &e{staff} &ftentou &c{action} &fo dono &e{target}&f!"
+    - "&7Esta acao foi &c&lBLOQUEADA &7e registrada."
+    - ""
+
+  # Sistema de Verificacao de Jogadores (/check)
+  check:
+    player-not-found: "&c&lERRO&f Jogador &e{player}&f nao foi encontrado!"
+    no-punishments: "&6&lCHECK&f O jogador &e{player}&f nao possui nenhuma punicao."
+    clear-no-permission: "&c&lERRO&f Apenas administradores podem limpar punicoes!"
+    separator: "&8&m=================================&r"
+    header-title: "  &6&l* VERIFICACAO DE JOGADOR *"
+    header-analyzing: "  &7Analisando: &f&l{player}"
+    account-title: "  &b&l* INFORMACOES DA CONTA"
+    account-name: "    &fNome: &e{player} {status}"
+    account-uuid: "    &fUUID: &7{uuid}..."
+    account-first-join: "    &fPrimeiro acesso: &7{date}"
+    account-last-seen: "    &fUltimo acesso: &7{date}"
+    account-last-ip: "    &fUltimo IP: &7{ip}"
+    account-groups: "    &fGrupos: &e{groups}"
+    account-auth: "    &fAutenticacao: {status}"
+    account-type: "    &fConta: {status}"
+    account-online: "&a&lONLINE"
+    account-offline: "&c&lOFFLINE"
+    account-registered: "&a[OK] Registrado"
+    account-not-registered: "&c[X] Nao registrado"
+    account-premium: "&b[OK] Premium"
+    account-cracked: "&7[X] Cracked"
+    punishments-title: "  &c&l* RESUMO DE PUNICOES"
+    punishments-none: "    &a[OK] Este jogador nao possui nenhuma punicao!"
+    punishments-ban-line: "    &4&l[BAN] &fBans: &7{total} total &8| {status}"
+    punishments-mute-line: "    &6&l[MUTE] &fMutes: &7{total} total &8| {status}"
+    punishments-warn-line: "    &e&l[WARN] &fWarnings: &7{total} total &8| {status}"
+    punishments-kick-line: "    &c&l[KICK] &fKicks: &7{total} total"
+    punishments-active-count: "&c&l{count} ATIVO(S)"
+    punishments-inactive-count: "&a0 ativos"
+    punishments-last: "    &7Ultima punicao: {type} &7- &f{reason}"
+    list-title: "  &c&l[!] HISTORICO DE PUNICOES &8- &f{player}"
+    list-clean: "  &a&l[OK] REGISTRO LIMPO!"
+    list-clean-sub: "  &7Este jogador nao possui punicoes."
+    list-total: "  &7Total: &f{count} &7punicoes registradas"
+    list-more: "  &8... e mais {count} punicao(oes)"
+    list-status-active: "&a&lATIVO"
+    list-status-expired: "&7EXPIRADO"
+    list-status-revoked: "&8&mREVOGADO"
+    list-icon-active: "&a&l[*]"
+    list-icon-expired: "&7&l[OK]"
+    list-icon-revoked: "&8&l[X]"
+    list-icon-ban: "&4&l[BAN]"
+    list-icon-mute: "&6&l[MUTE]"
+    list-icon-warn: "&e&l[WARN]"
+    list-icon-kick: "&c&l[KICK]"
+    list-entry-main: "  {status_icon} {type_icon} {type_color}&l{type_name} &8[{status_text}&8]"
+    list-entry-id-date: "    &8|&7 ID: &f#{id} &8| &7Data: &f{date}"
+    list-entry-staff-reason: "    &8|&7 Staff: &e{staff} &8| &7Motivo: &f{reason}"
+    list-entry-duration-perm: "    &8+&7 Duracao: &c&lPERMANENTE"
+    list-entry-duration-temp: "    &8+&7 Duracao: &f{duration}{remaining}"
+    list-entry-remaining: " &7(Restante: &e{time}&7)"
+    alts-title: "  &d&l[LINK] CONTAS VINCULADAS &8- &f{player}"
+    alts-no-ip: "  &c[X] Este jogador nao possui IP registrado."
+    alts-no-ip-sub: "  &7(Pode nunca ter logado ou dados corrompidos)"
+    alts-ip-analyzed: "  &7IP analisado: &f{ip}"
+    alts-unique: "  &a&l[OK] CONTA UNICA!"
+    alts-unique-sub: "  &7Nenhuma outra conta utiliza este IP."
+    alts-found: "  &7Encontradas &e&l{count} &7conta(s) vinculadas:"
+    alts-banned-alert: "  &c&l[!] ALERTA: {count} conta(s) banida(s) neste IP!"
+    alts-more: "    &8... e mais {count} conta(s)"
+    alts-consider-ban: "  &c&oConsidere verificar se todas as contas devem ser banidas."
+    alts-entry-name: "    {status}&f{name}"
+    alts-entry-last-seen: "      &8+&7 Ultimo acesso: &f{date}"
+    alts-status-banned: "&c&l[BAN] "
+    alts-status-muted: "&6[MUTE] "
+    alts-status-online: "&a[ON] "
+    alts-status-ok: "&7[OK] "
+    alts-summary-title: "  &d&l* CONTAS VINCULADAS (IP)"
+    alts-summary-none: "    &a[OK] Nenhuma outra conta com este IP!"
+    alts-summary-found: "    &7Encontradas &e{count} &7conta(s) com mesmo IP:"
+    alts-summary-more: "    &8... e mais {count} conta(s)"
+    alts-summary-entry-banned: "      &c&l[BAN] &f{name} &c[BANIDO]"
+    alts-summary-entry-ok: "      &7&f{name}"
+    clear-title: "  &a&l[OK] PUNICOES LIMPAS COM SUCESSO!"
+    clear-player: "  &fJogador: &e{player}"
+    clear-count: "  &fPunicoes removidas: &c{count}"
+    tips-header: "  &7&oDicas:"
+    tips-punishments: "    &e/check {player} punishments &8- &7Ver todas as punicoes"
+    tips-alts: "    &e/check {player} alts &8- &7Ver contas com mesmo IP"
+    tips-clear: "    &e/check {player} clear &8- &7Limpar todas as punicoes (Admin+)"
+    help-title: "&6&l  CHECK &8- &7Verificacao de Jogadores"
+    help-usage: "&e  Uso: &f/check <jogador> [opcao]"
+    help-options-header: "&6  Opcoes:"
+    help-option-none: "    &a(nenhuma) &8- &7Mostra overview completo"
+    help-option-punishments: "    &epunishments &8- &7Lista todas as punicoes detalhadas"
+    help-option-alts: "    &dalts &8- &7Mostra contas com mesmo IP"
+    help-option-clear: "&cclear &8- &7Limpa todas as punicoes (Admin+)"
+    help-aliases: "&6  Aliases: &f/verificar, /checar"
+    help-examples-header: "&6  Exemplos:"
+    help-example-1: "    &f/check Steve"
+    help-example-2: "    &f/check Steve punishments"
+    help-example-3: "    &f/check Steve alts"
+
+# ==============================================================================
+# 3.5 MENSAGENS DE PUNICAO ATIVA (Quando jogador mutado tenta falar)
+# ==============================================================================
+punishment-listener:
+  # Mensagem enviada ao jogador mutado quando tenta falar no chat
+  mute-chat:
+    header: "&8&m----------&r  &6&lX VOCE ESTA SILENCIADO X  &8&m----------&r"
+    permanent: "   &fVoce foi silenciado &c&lPERMANENTEMENTE&f."
+    temporary: "   &fVoce esta silenciado &e&lTEMPORARIAMENTE&f."
+    staff: "   &7Staffer responsavel: &f{staff}"
+    reason: "   &7Motivo: &6{reason}"
+    duration: "   &7Tempo restante: &e{duration}"
+    proof: "   &7Prova: &9&n{proof}"
+    appeal: "   &7Apele em: &bhaumeamc.com/forum"
+    store: "   &7Compre &a&lUNMUTE &7em: &bhaumeamc.com/loja"
+    footer: "&8&m-------------------------------------------------&r"
+  
+  # Tela de ban (quando jogador tenta entrar banido)
+  ban-screen: |
+    
+    &8&m----------&r  &4&lX VOCE FOI BANIDO X  &8&m----------&r
+    
+       &fVoce foi banido {type} do servidor.
+    
+       &7Staffer: &f{staff}
+       &7Motivo: &c{reason}
+       &7Duracao: &e{duration}
+       &7Prova: &9&n{proof}
+    
+    &8&m-------------------------------------------------&r
+    
+       &7Apele em: &bhaumeamc.com/forum
+       &7Compre &a&lUNBAN &7em: &bhaumeamc.com/loja
+    
+    &8&m-------------------------------------------------&r
+
+# ==============================================================================
+# 4. GAMEPLAY (Combate, Economia, Stats, Ligas, Medalhas, Kits)
+# ==============================================================================
+combat:
+  tagged: "&6&lHAUMEA&f&lMC&8 >>&f Voce esta em &c&lCOMBATE&f! Nao desconecte!"
+  left: "&6&lHAUMEA&f&lMC&8 >>&f Voce saiu do combate."
+  logout: "&6&lHAUMEA&f&lMC&8 >>&f O jogador &e{player}&f deslogou em combate!"
+
+coins:
+  received: "&6&lHAUMEA&f&lMC&8 >>&f Voce recebeu &e{amount} coins&f!"
+  removed: "&6&lHAUMEA&f&lMC&8 >>&f Foram removidos &e{amount} coins&f da sua conta."
+  not-enough: "&c&lERRO&f Voce nao tem coins suficientes!"
+  balance: "&6&lHAUMEA&f&lMC&8 >>&f Seu saldo: &e{amount} coins&f."
+
+stats:
+  kill: "&6&lHAUMEA&f&lMC&8 >>&f Voce matou &e{victim}&f! &7(+{elo} ELO, +{coins} coins)"
+  death: "&6&lHAUMEA&f&lMC&8 >>&f Voce morreu! &7(-{elo} ELO)"
+  killstreak: "&6&lHAUMEA&f&lMC&8 >>&f &6&lKILLSTREAK! &fVoce esta com &e{streak}&f kills seguidas!"
+  killstreak-ended: "&6&lHAUMEA&f&lMC&8 >>&f Seu killstreak de &e{streak}&f kills foi encerrado por &e{killer}&f."
+  elo-added: "&6&lHAUMEA&f&lMC&8 >>&f Voce recebeu &e{amount}&f ELO!"
+  elo-removed: "&6&lHAUMEA&f&lMC&8 >>&f Foram removidos &e{amount}&f ELO da sua conta."
+  
+  # Broadcasts de Killstreak (extremamente bonitos)
+  killstreak-broadcast:
+    header: "&8&m----------&r  &c&lX KILLSTREAK X  &8&m----------&r"
+    message: "&f&l{player} &cesta DOMINANDO com &4&l{streak} &cabates seguidos!"
+    footer: "&8&m-----------------------------------------&r"
+  
+  # Broadcast quando killstreak de alguem e encerrado (5+)
+  killstreak-ended-broadcast:
+    header: "&8&m----------&r  &e&lX STREAK ENCERRADO X  &8&m----------&r"
+    message: "&f&l{killer} &eacabou com a serie de &c&l{streak} &eabates de &f{victim}&e!"
+    reward: "&7Bonus de &e{coins} coins &7por encerrar o killstreak!"
+    footer: "&8&m----------------------------------------------&r"
+
+league:
+  promoted: "&6&lHAUMEA&f&lMC&8 >>&f &a&lPROMOVIDO! &fVoce subiu para a liga &r{league}&f!"
+  demoted: "&6&lHAUMEA&f&lMC&8 >>&f &c&lREBAIXADO! &fVoce caiu para a liga &r{league}&f."
+  progress: "&6&lHAUMEA&f&lMC&8 >>&f Progresso para proximo rank: &e{progress}% &7({elo_current}/{elo_needed} ELO)"
+  reward: "&6&lHAUMEA&f&lMC&8 >>&f &aVoce recebeu &e{coins} coins &acomo recompensa de rank!"
+  promoted-broadcast: "&6&lHAUMEA&f&lMC&8 >>&f &e{player} &fsubiu para a liga {league}&f!"
+  elo-gained: "&6&lHAUMEA&f&lMC&8 >>&f Voce ganhou &a+{elo} Elo &7(Total: &f{total}&7)"
+  elo-lost: "&6&lHAUMEA&f&lMC&8 >>&f Voce perdeu &c-{elo} Elo &7(Total: &f{total}&7)"
+
+medal:
+  selected: "Voce agora esta &b&lUSANDO&f a medalha {medal}&f."
+  removed: "Sua medalha foi &c&lREMOVIDA&f com sucesso!"
+  not-found: "&cEssa medalha nao existe!"
+  no-permission: "&cVoce nao possui permissao para usar a medalha {medal}&c!"
+  already-using: "&cVoce ja esta usando essa medalha!"
+  no-medal-equipped: "&cVoce nao esta usando nenhuma medalha!"
+  expired: "&c&lMEDALHAS &fSua medalha foi removida pois voce perdeu a permissao."
+
+kit:
+  selected: "&6&lHAUMEA&f&lMC&8 >>&f Voce selecionou o kit {kit}&f!"
+  removed: "&6&lHAUMEA&f&lMC&8 >>&f Kit removido com sucesso!"
+  already-using: "&cVoce ja esta usando este kit!"
+  incompatible: "&cEste kit e incompativel com seu outro kit selecionado!"
+  no-permission: "&cVoce nao possui permissao para usar este kit!"
+  purchased: "&6&lHAUMEA&f&lMC&8 >>&f &aParabens! Voce alugou o kit {kit}&a por 1 semana!"
+  already-owned: "&cVoce ja possui este kit!"
+  not-enough-coins: "&cVoce nao possui coins suficiente para alugar este kit."
+
+# ==============================================================================
+# 4.5. DUELOS 1v1 (Sistema Completo de Duelos)
+# ==============================================================================
+duel:
+  # Headers para help
+  help:
+    header: "&8&m-----------------------------------------"
+    title: "  &e&l* SISTEMA DE DUELOS 1v1 *"
+    footer: "&8&m-----------------------------------------"
+  
+  # Headers para stats
+  stats:
+    header: "&8&m-----------------------------------------"
+    title: "  &e&lSUAS ESTATISTICAS DE 1v1"
+    footer: "&8&m-----------------------------------------"
+  
+  # Mensagens de erro
+  error:
+    unavailable: "&c&lERRO&f Sistema de duelos nao esta disponivel!"
+    player-offline: "&c&lERRO&f O jogador &e{player}&f nao esta online!"
+    self: "&c&lERRO&f Voce nao pode desafiar a si mesmo!"
+    already-in-queue: "&c&lERRO&f Voce ja esta na fila!"
+    already-in-duel: "&c&lERRO&f Voce ja esta em um duelo!"
+    not-in-queue: "&c&lERRO&f Voce nao esta na fila!"
+    target-busy: "&c&lERRO&f &e{player}&f esta ocupado(a)!"
+    no-arena: "&c&lERRO&f Nenhuma arena disponivel no momento!"
+    challenge-pending: "&c&lERRO&f Voce tem um desafio pendente!"
+    in-combat: "&c&lERRO&f Voce esta em combate!"
+    command-blocked-duel: "&c&lERRO&f Voce nao pode usar este comando durante um duelo!"
+    command-blocked-queue: "&c&lERRO&f Voce nao pode usar este comando enquanto esta na fila! Use &e/duel sair&c primeiro."
+  
+  # Fila de matchmaking
+  queue:
+    joined: "&6&l1V1 &8>>&f &aVoce entrou na fila de duelos!"
+    left: "&6&l1V1 &8>>&f &cVoce saiu da fila de duelos."
+    players: "&7Jogadores na fila: &e{count}"
+    hint: "&7Use &e/duel sair &7para sair da fila."
+  
+  # Desafio entre jogadores
+  challenge:
+    sent: "&6&l1V1 &8>>&f &aDesafio enviado para &e{player}&a!"
+    waiting: "&7Aguardando resposta... (expira em {time}s)"
+    expired: "&6&l1V1 &8>>&f &cO desafio expirou."
+    denied: "&6&l1V1 &8>>&f &cVoce recusou o desafio."
+    denied-target: "&6&l1V1 &8>>&f &c{player} recusou seu desafio."
+    
+    # Notificacao bonita de desafio
+    notification:
+      header: "&8&m--------------------------------------------"
+      title: "  &e&l* DESAFIO DE DUELO!"
+      from: "  &f{player} &7te desafiou para um 1v1!"
+      settings: "  &7Configuracoes: {settings}"
+      buttons: "  &a&l[ACEITAR]  &c&l[RECUSAR]"
+      expire: "  &7Expira em &e{time} segundos&7!"
+      footer: "&8&m--------------------------------------------"
+  
+  # Inicio do duelo
+  start:
+    countdown: "&e{seconds}"
+    prepare: "&7Prepare-se!"
+    fight: "&a&lLUTE!"
+    opponent: "&e{player}"
+    against: "&6&l1V1 &8>>&f &aVoce esta duelando contra &e{player}&a!"
+  
+  # Fim do duelo
+  end:
+    victory-title: "&a&lVITORIA!"
+    defeat-title: "&c&lDERROTA!"
+    duration: "&7Duracao: {time}"
+    won: "&6&l1V1 &8>>&f &aVoce venceu o duelo contra &e{player}&a!"
+    lost: "&6&l1V1 &8>>&f &cVoce perdeu o duelo contra &e{player}&c."
+    cancelled: "&6&l1V1 &8>>&f &cO duelo foi encerrado por um administrador."
+  
+  # Isolamento visual
+  isolation:
+    enabled: "&7&oModo de isolamento visual ativado. Voce so ve seu oponente."
+    disabled: "&7&oVisibilidade restaurada."
+
+# ==============================================================================
+# 5. FEATURES (Fake, Skin, Teleporte, Feast, Bounty)
+# ==============================================================================
+fake:
+  applied: "&6&lFAKE &fSeu nome foi alterado para &e&l{name}&f!"
+  reset: "&6&lFAKE &fSeu nome foi restaurado para o original!"
+  not-using: "&c&lFAKE &fVoce nao esta usando um nome falso!"
+  invalid-format: "&c&lFAKE &fNome invalido! Use 3-16 caracteres (letras, numeros e _)."
+  name-in-use: "&c&lFAKE &fEste nome ja esta sendo usado por outro jogador!"
+  name-registered: "&c&lFAKE &fEste nome pertence a um jogador registrado no servidor!"
+  name-premium: "&c&lFAKE &fEste nome pertence a uma conta Premium do Minecraft!"
+  no-random-available: "&c&lFAKE &fNenhum nome aleatorio disponivel no momento."
+  random: "&6&lFAKE &fVoce recebeu o nome aleatorio &e{name}&f!"
+  invalid-name: "&c&lFAKE &fEsse nome e invalido ou esta em uso!"
+  
+  error:
+    unavailable: "&c&lERRO &fSistema de Fake Nick nao esta disponivel!"
+    
+  info:
+    header: "  &6&lFAKE NICK &8- &fInformacoes"
+    status-active: "  &fStatus: &a&lATIVO"
+    status-inactive: "  &fStatus: &c&lINATIVO"
+    original-name: "  &fNome Original: &7{name}"
+    fake-name: "  &fNome Fake: &e{name}"
+    real-name: "  &fNome Real: &e{name}"
+    prefix: "  &fPrefixo: {prefix}"
+    reset-hint: "  &7Use &e/fake reset &7para voltar ao normal."
+    activate-hint: "  &7Use &e/fake <nome> &7para ativar."
+    
+  help:
+    header: "&6&l  FAKE NICK &8- &7Sistema de Disfarce"
+    usage: "&e  Uso: &f/fake <nome|random|reset|info>"
+    subcommands:
+      - "&6  Subcomandos:"
+      - "    &a* <nome> &8- &7Define um nome especifico"
+      - "    &e* random &8- &7Gera um nome aleatorio"
+      - "    &c* reset &8- &7Restaura seu nome original"
+      - "    &b* info &8- &7Mostra informacoes do disfarce"
+    examples:
+      - "&6  Exemplos:"
+      - "    &f/fake Steve"
+      - "    &f/fake random"
+    note: "&c  Nota: Suas permissoes e tags originais sao mantidas!"
+
+skin:
+  help:
+    header: "  &6&lSKINS - AJUDA"
+  applied: "&a&lSKIN &fSkin de &e{skin}&f aplicada com sucesso!"
+  not-found: "&c&lSKIN &fNao foi possivel encontrar a skin de &e{skin}&f."
+  searching: "&b&lSKIN &fBuscando skin de &e{skin}&f..."
+  resetting: "&b&lSKIN &fRestaurando sua skin original..."
+  reset-success: "&a&lSKIN &fSua skin original foi restaurada!"
+  reset-error: "&c&lERRO&f Nao foi possivel resetar sua skin. Tente novamente."
+  cooldown: "&c&lSKIN &fAguarde &e{time}s &fpara alterar sua skin novamente."
+
+teleport:
+  warmup: "&6&lHAUMEA&f&lMC&8 >>&f Teleportando em &e{seconds}&f segundos... Nao se mova!"
+  success: "&6&lHAUMEA&f&lMC&8 >>&f Voce foi &ateleportado&f com sucesso!"
+  cancelled-movement: "&c&lERRO&f Teleporte &ccancelado&f! Voce se moveu."
+  cancelled-damage: "&c&lERRO&f Teleporte &ccancelado&f! Voce recebeu dano."
+  cancelled-combat: "&c&lERRO&f Teleporte &ccancelado&f! Voce entrou em combate."
+  in-combat: "&c&lERRO&f Voce nao pode se teleportar em combate!"
+  target-offline: "&c&lERRO&f O jogador alvo nao esta online!"
+
+feast:
+  countdown-started: "&6&lFEAST &8>> &f&eO Feast ira spawnar em &b{time}&e!"
+  countdown: "&6&lFEAST &8>> &f&eO Feast ira spawnar em &b{time}&e!"
+  spawned: "&6&lFEAST &8>> &f&a&lO FEAST SPAWNOU! &fLocalizacao: &eX: {x} Y: {y} Z: {z} &7({count} bau(s))"
+  cleaned: "&6&lFEAST &8>> &f&cOs baus do Feast foram removidos!"
+  cancelled: "&6&lFEAST &8>> &f&cO Feast foi cancelado por um administrador."
+  countdown-admin-started: "&6&lFEAST &8>> &f&aContagem regressiva iniciada!"
+  started-force: "&6&lFEAST &8>> &f&aFeast spawnou imediatamente!"
+  stopped: "&6&lFEAST &8>> &f&cFeast parado com sucesso!"
+  timer-set: "&6&lFEAST &8>> &f&aTimer definido para &e{time}&a!"
+  chest-added: "&6&lFEAST &8>> &f&aLocalizacao de bau adicionada! &7(ID: {id}, X: {x}, Y: {y}, Z: {z})"
+  chest-removed: "&6&lFEAST &8>> &f&cLocalizacao de bau removida! &7(ID: {id}, X: {x}, Y: {y}, Z: {z})"
+  reload: "&6&lFEAST &8>> &f&aConfiguracoes recarregadas!"
+  already-active: "&c&lERRO&f O Feast ja esta ativo!"
+  not-active: "&c&lERRO&f Nao ha Feast ativo no momento."
+  no-locations: "&c&lERRO&f Nao ha localizacoes de bau configuradas! Use &e/feast addchest&c."
+  no-nearby-chest: "&c&lERRO&f Nenhum bau de Feast encontrado proximo a voce."
+  chest-too-far: "&c&lERRO&f O bau mais proximo esta a &e{distance}m&c. Aproxime-se (max 10m)."
+  no-permission: "&c&lERRO&f Voce nao tem permissao para gerenciar o Feast!"
+  unknown-subcommand: "&c&lERRO&f Subcomando desconhecido!"
+  timer-usage: "&c&lERRO&f Use: &e/feast timer <segundos>"
+  timer-min: "&c&lERRO&f O timer minimo e &e10 segundos&c!"
+  timer-max: "&c&lERRO&f O timer maximo e &e3600 segundos (1 hora)&c!"
+
+bounty:
+  # Mensagens pessoais
+  placed: "&6&lBOUNTY &8>> &fVoce colocou &e{amount} coins &fna cabeca de &c{target}&f!"
+  received: "&c&lBOUNTY &fAlguem colocou &e{amount} coins &fna sua cabeca! Total: &e{total}"
+  collected: "&6&lBOUNTY &8>> &fVoce coletou a recompensa de &e{amount} coins &fpor matar &c{target}&f!"
+  lost: "&6&lBOUNTY &8>> &f&fO bounty de &c{amount} coins &fde &e{target} &ffoi perdido!"
+  your-collected: "&c&lBOUNTY &fSeu bounty de &e{amount} coins &ffoi coletado!"
+  cannot-self: "&c&lBOUNTY &fVoce nao pode colocar bounty em si mesmo!"
+  min-amount: "&c&lBOUNTY &fO bounty minimo e de &e{min} coins&f!"
+  not-enough-coins: "&c&lBOUNTY &fVoce nao tem coins suficientes!"
+  max-reached: "&c&lBOUNTY &fO bounty maximo de &e{max} &fja foi alcancado!"
+  
+  # Broadcast quando bounty alto e colocado (>= 5000)
+  placed-broadcast:
+    header: "&8&m----------&r  &6&l$ BOUNTY HUNTER $  &8&m----------&r"
+    message: "&c&l{target} &fagora tem &e&l{amount} coins &fna cabeca!"
+    hint: "&7Mate-o para coletar a recompensa!"
+    footer: "&8&m-----------------------------------------&r"
+  
+  # Broadcast quando alguem coleta um bounty
+  collected-broadcast:
+    header: "&8&m----------&r  &a&l$ BOUNTY COLETADO $  &8&m----------&r"
+    message: "&a&l{killer} &fmatou &c{target} &fe coletou &e&l{amount} coins&f!"
+    footer: "&8&m-------------------------------------------&r"
+  
+  # Broadcast quando bounty e perdido (suicidio/void)
+  lost-broadcast:
+    header: "&8&m----------&r  &c&l$ BOUNTY PERDIDO $  &8&m----------&r"
+    message: "&c{target} &fmorreu e o bounty de &e{amount} coins &ffoi perdido!"
+    footer: "&8&m-----------------------------------------&r"
+  
+  help:
+    header: "&6&l  BOUNTY &8- &7Coloque recompensas em jogadores"
+    
+  error:
+    unavailable: "&cSistema de bounty nao disponivel!"
+    player-offline: "&c&lBOUNTY &fJogador &e{player} &fnao encontrado!"
+    invalid-amount: "&c&lBOUNTY &fQuantia invalida!"
+    zero-amount: "&c&lBOUNTY &fA quantia deve ser maior que zero!"
+    info-usage: "&c&lBOUNTY &fUse: /bounty info <jogador>"
+    
+  top:
+    header: "&6&l  TOP BOUNTIES"
+    empty: "&7  Nenhum bounty ativo no momento."
+    count: "&7  Jogadores com bounty ativo: &e{count}"
+    
+  info:
+    none: "&6&lBOUNTY &e{player} &fnao tem bounty ativo."
+    has-bounty: "&6&lBOUNTY &e{player} &ftem &c{amount} coins &fna cabeca!"
+  
+  # ==================== BOUNTY GLOBAL (AUTOMATIZADO) ====================
+  # Sistema que automaticamente coloca bounty no jogador com maior killstreak
+  global:
+    # Broadcast quando o servidor coloca bounty global em alguem
+    placed:
+      header: "&8&m----------&r  &c&l* ALVO DO SERVIDOR *  &8&m----------&r"
+      message: "&c&l{target} &fcom &e&l{streak} kills &fe alvo do &6&lBOUNTY GLOBAL&f!"
+      hint: "&7O servidor colocou &e{amount} coins &7na cabeca dele!"
+      footer: "&8&m-------------------------------------------------&r"
+    
+    # Broadcast de localizacao do alvo (a cada 2 minutos)
+    location:
+      header: "&8&m----------&r  &6&l$ LOCALIZACAO DO ALVO $  &8&m----------&r"
+      message: "&c&l{target} &f(Bounty: &e{amount}&f) esta em &aX:{x} Y:{y} Z:{z}&f!"
+      footer: "&8&m-------------------------------------------------&r"
+    
+    # Broadcast quando alguem mata o alvo do bounty global
+    collected:
+      header: "&8&m----------&r  &a&l$ ALVO ELIMINADO! $  &8&m----------&r"
+      message: "&a&l{killer} &feliminou o alvo &c{target} &fe coletou &e&l{amount} coins&f!"
+      footer: "&8&m-------------------------------------------------&r"
+    
+    # Broadcast quando o alvo do bounty global desloga
+    expired:
+      header: "&8&m----------&r  &c&l$ BOUNTY EXPIRADO $  &8&m----------&r"
+      message: "&cO alvo do Bounty Global deslogou! O bounty foi cancelado."
+      footer: "&8&m-------------------------------------------------&r"
+
+authority:
+  injected: "&4&lADMIN&f Sistema de autoridade &aINJETADO&f em {player}."
+  ejected: "&4&lADMIN&f Sistema de autoridade &cREMOVIDO&f de {player}."
+  no-op-power: "&c&lERRO&f O comando /op nao tem poder neste servidor."
+  permission-denied: "&c&lERRO&f Seu cargo nao permite esta acao."
+  debug-header: "&8&m=====&r &6&lAUTHORITY MANAGER DEBUG &8&m====="
+  debug-reflection: "&fReflexao ativa: {status}"
+  debug-players: "&fJogadores injetados: &e{count}"
+  debug-cache: "&f- {player}: &e{perms} &fpermissoes em cache"
+  
+  error:
+    unavailable: "&cAuthorityManager nao esta inicializado!"
+    check-usage: "&cUso: /authority check <jogador> [permissao]"
+    refresh-usage: "&cUso: /authority refresh <jogador|all>"
+    player-offline: "&cJogador &e{player}&c nao esta online!"
+    not-injected: "&cJogador &e{player}&c nao tem HaumeaPermissible injetado!"
+
+  refresh:
+    all: "&aPermissoes de todos os jogadores foram atualizadas!"
+    player: "&aPermissoes de &e{player}&a foram atualizadas!"
+
+launcher:
+  sponge-info: "&6&lHAUMEA&f&lMC&8 >>&f &eLancador Vertical &7(Esponja): &fVelocidade Y=3.5"
+  emerald-info: "&6&lHAUMEA&f&lMC&8 >>&f &eDash Direcional &7(Esmeralda): &fMultiplicador=24.0, Y=0.55"
+  protection-active: "&6&lHAUMEA&f&lMC&8 >>&f Protecao de queda &aativa&f."
+  protection-removed: "&6&lHAUMEA&f&lMC&8 >>&f Protecao de queda &cremovida&f."
+
+# ==============================================================================
+# 6. EVENTOS (Sistema de Eventos Automaticos)
+# ==============================================================================
+event:
+  created: "&6&lEVENTO &8>> &f&eUm novo evento foi criado! Use &b/evento &epara participar!"
+  open: "&6&lEVENTO &8>> &f&aAs inscricoes estao abertas! &7(/evento)"
+  closed: "&6&lEVENTO &8>> &f&cAs inscricoes foram fechadas!"
+  started: "&6&lEVENTO &8>> &f&a&lO EVENTO COMECOU! &eBoa sorte a todos!"
+  paused: "&6&lEVENTO &8>> &f&6O evento foi &lPAUSADO&6."
+  resumed: "&6&lEVENTO &8>> &f&aO evento foi &lRETOMADO&a!"
+  cancelled: "&6&lEVENTO &8>> &f&cO evento foi &lCANCELADO&c!"
+  finished: "&6&lEVENTO &8>> &f&dO evento foi &lFINALIZADO&d!"
+  winner: "&6&lEVENTO &8>> &f&a&lEVENTO FINALIZADO! &eVencedor: &b{player}"
+  players-remaining: "&6&lEVENTO &8>> &f&eRestam &b{count} jogadores&e!"
+  few-players: "&6&lEVENTO &8>> &f&c&lATENCAO! &eRestam apenas &b{count} jogadores&e!"
+  joined: "&6&lEVENTO &8>> &f&aVoce entrou no evento &e{name}&a!"
+  left: "&6&lEVENTO &8>> &f&cVoce saiu do evento."
+  kicked: "&6&lEVENTO &8>> &f&cVoce foi &lEXPULSO&c do evento!"
+  eliminated: "&6&lEVENTO &8>> &f&cVoce foi &lELIMINADO&c do evento!"
+  eliminated-by: "&6&lEVENTO &8>> &f&cVoce foi &lELIMINADO&c por &e{killer}&c!"
+  kicked-confirm: "&6&lEVENTO &8>> &f&aJogador &e{player} &aexpulso do evento!"
+  warp-set: "&6&lEVENTO &8>> &f&aWarp do evento definida com sucesso!"
+  tpall-success: "&6&lEVENTO &8>> &f&aTeleportados &e{count} jogadores&a para a arena!"
+  toggle-result: "&6&lEVENTO &8>> &f{setting}: {status}"
+  pvp-toggle: "&6&lEVENTO &8>> &fPvP: {status}"
+  damage-toggle: "&6&lEVENTO &8>> &fDano: {status}"
+  build-toggle: "&6&lEVENTO &8>> &fBuild: {status}"
+  already-exists: "&c&lERRO&f Ja existe um evento ativo! Cancele-o primeiro."
+  no-warp: "&c&lERRO&f A warp do evento nao foi definida! Use &e/evento setwarp&c."
+  no-active-event: "&c&lERRO&f Nao ha nenhum evento ativo no momento."
+  not-open: "&c&lERRO&f O evento nao esta aberto para inscricoes!"
+  already-in: "&c&lERRO&f Voce ja esta participando do evento!"
+  not-in-event: "&c&lERRO&f Voce nao esta participando de nenhum evento!"
+  invalid-state: "&c&lERRO&f Estado invalido! Esperado: &e{expected}"
+  not-enough-players: "&c&lERRO&f E necessario pelo menos 2 jogadores para iniciar!"
+  player-not-in-event: "&c&lERRO&f O jogador &e{player}&c nao esta no evento!"
+  player-not-found: "&c&lERRO&f Jogador &e{player}&c nao encontrado!"
+  cannot-leave-running: "&c&lERRO&f Voce nao pode sair durante o evento!"
+  command-blocked: "&c&lERRO&f Este comando esta bloqueado durante o evento!"
+  build-disabled: "&c&lERRO&f Build esta desabilitado neste evento!"
+  usage-kick: "&c&lERRO&f Use: &e/evento kick <jogador>"
+
+# ==============================================================================
+# 7. MENUS GUI (Titulos e Itens)
+# ==============================================================================
+menu:
+  profile:
+    title: "&6&lPerfil"
+    stats:
+      title: "&a&lVer estatisticas"
+      lore:
+        - "&7Veja suas estatisticas"
+        - "&7de todos os jogos!"
+        - ""
+        - "&8* &fKills, Deaths, K/D"
+        - "&8* &fKillstreak"
+        - "&8* &fModos de jogo"
+        - ""
+        - "&eClique para abrir!"
+    
+    medals:
+      title: "&e&lMedalhas"
+      lore:
+        - "&7Veja e selecione medalhas"
+        - "&7para exibir no chat!"
+        - ""
+        - "&eClique para ver!"
+      error: "&cVoce so pode gerenciar suas proprias medalhas!"
+
+    language:
+      title: "&b&lIdioma"
+      lore:
+        - "&7Alterar seu idioma"
+        - "&7de preferencia."
+        - ""
+        - "&eClique para alterar!"
+      error: "&cVoce so pode alterar seu proprio idioma!"
+
+    preferences:
+      title: "&d&lPreferencias"
+      lore:
+        - "&7Altere suas preferencias"
+        - "&7de notificacoes e privacidade."
+        - ""
+        - "&eClique para abrir!"
+      error: "&cVoce so pode alterar suas proprias preferencias!"
+
+    skin:
+      title: "&6&lSua Skin"
+      lore:
+        - "&7Visualize e altere"
+        - "&7sua skin atual."
+        - ""
+        - "&eClique para abrir!"
+      error: "&cVoce so pode gerenciar sua propria skin!"
+      coming-soon: "&eEm breve! Sistema de skins em desenvolvimento."
+
+    head:
+      title: "&a&lInformacoes do Jogador"
+      groups-header: "&6Grupos:"
+      stats-header: "&6Estatisticas rapidas:"
+
+  daily-reward:
+    title: "&6&lPresenca Diaria"
+    info:
+      title: "&e&lInformacoes"
+      lore:
+        - "&7Resgate sua recompensa"
+        - "&7diaria de moedas!"
+        - ""
+        - "&6Como funciona:"
+        - "&8* &fResgate a cada &e24 horas"
+        - "&8* &fGanhe &6{base} moedas &fbase"
+        - "&8* &f+&e{bonus} moedas &fpor dia consecutivo"
+        - "&8* &fBonus maximo: &a{max_days} dias"
+        - ""
+        - "&aSua proxima recompensa: &6{current} moedas"
+    
+    claim:
+      title: "&a&l* RESGATAR RECOMPENSA *"
+      lore:
+        - ""
+        - "&aRecompensa disponivel!"
+        - ""
+        - "&6Voce recebera:"
+        - "&8* &e{reward} moedas"
+        - "&8* &7(Inclui bonus de &a{streak} dia(s)&7)"
+        - ""
+        - "&e Clique para resgatar!"
+    
+    wait:
+      title: "&c&lAGUARDANDO..."
+      lore:
+        - ""
+        - "&cVoce ja resgatou hoje!"
+        - ""
+        - "&7Tempo restante:"
+        - "&e{time}"
+        - ""
+        - "&7Volte mais tarde!"
+      error: "&c&lHAUMEAMC &fVoce precisa esperar &e{time} &fpara resgatar novamente!"
+    
+    streak:
+      title: "&e&lSeu Streak"
+      lore:
+        - "&7Dias consecutivos resgatando"
+        - "&7a presenca diaria."
+        - ""
+        - "&6Seu streak: {streak_color}{streak} dia(s)"
+        - ""
+        - "&7Bonus atual: &e+{bonus} moedas"
+        - ""
+        - "{status}"
+      max-reached: "&a&l* BONUS MAXIMO ATINGIDO! *"
+      not-max: "&7Faltam &e{days} dia(s) &7para bonus maximo!"
+
+    success:
+      header: "&6&l* PRESENCA DIARIA *"
+      reward: "&fVoce resgatou &6{amount} moedas&f!"
+      streak: "&7Streak: &e{days} dia(s) consecutivos!"
+      footer: "&aVolte amanha para continuar seu streak!"
+
+  warps:
+    title: "&6&lTELEPORTE &8- &fArenas"
+    selector:
+      name: "&6&l* SELETOR DE ARENAS *"
+      lore:
+        - ""
+        - "&7Escolha uma arena para"
+        - "&7se teleportar e batalhar!"
+        - ""
+        - "&6&lDicas:"
+        - "&8* &fCada arena tem regras diferentes"
+        - "&8* &fEscolha baseado no seu estilo"
+        - "&8* &fMais jogadores = mais diversao!"
+        - ""
+    fps:
+      name: "&a&l* FPS ARENA *"
+      lore:
+        - ""
+        - "&7Arena otimizada para"
+        - "&7jogadores com FPS baixo."
+        - ""
+        - "&6Caracteristicas:"
+        - "&8* &fMenos particulas"
+        - "&8* &fMenos entidades"
+        - "&8* &fMais performance"
+        - "&8* &fMapa simplificado"
+        - ""
+        - "&e&lJogadores: &f{players}"
+        - ""
+        - "&a> Clique para teleportar!"
+    duels:
+      name: "&b&l[DUEL] DUELS ARENA [DUEL]"
+      lore:
+        - ""
+        - "&7Combates 1v1 ranqueados!"
+        - "&7Prove que voce e o melhor."
+        - ""
+        - "&6Caracteristicas:"
+        - "&8* &fDesafie jogadores"
+        - "&8* &fDuelos ranqueados"
+        - "&8* &fSuba no ranking"
+        - "&8* &fGanhe recompensas"
+        - ""
+        - "&e&lJogadores: &f{players}"
+        - ""
+        - "&a> Clique para teleportar!"
+    lava:
+      name: "&c&l[X] LAVA ARENA [X]"
+      lore:
+        - ""
+        - "&7Arena perigosa com lava!"
+        - "&7Cuidado para nao cair..."
+        - ""
+        - "&6Caracteristicas:"
+        - "&8* &fCombate intenso"
+        - "&8* &fAmbiente perigoso"
+        - "&8* &fMuita adrenalina"
+        - "&8* &fRisco de queda"
+        - ""
+        - "&e&lJogadores: &f{players}"
+        - ""
+        - "&a> Clique para teleportar!"
+    event:
+      name-active: "&d&l* EVENTO ATIVO *"
+      lore-active:
+        - ""
+        - "&a&lEVENTO EM ANDAMENTO!"
+        - ""
+        - "&7Participe do evento atual"
+        - "&7e ganhe premios exclusivos!"
+        - ""
+        - "&6Caracteristicas:"
+        - "&8* &fEventos especiais"
+        - "&8* &fPremios exclusivos"
+        - "&8* &fDiversao garantida"
+        - "&8* &fTempo limitado!"
+        - ""
+        - "&e&lJogadores: &f{players}"
+        - ""
+        - "&a> Clique para teleportar!"
+      name-inactive: "&e&l* EVENTO *"
+      lore-inactive:
+        - ""
+        - "&7Area destinada a eventos"
+        - "&7especiais do servidor."
+        - ""
+        - "&6Caracteristicas:"
+        - "&8* &fEventos especiais"
+        - "&8* &fPremios exclusivos"
+        - "&8* &fDiversao garantida"
+        - "&8* &fFique atento ao chat!"
+        - ""
+        - "&e&lJogadores: &f{players}"
+        - ""
+        - "&a> Clique para teleportar!"
+
+  reports:
+    title: "&3&lReports"
+    empty: "&3&lREPORT &fNao ha reports abertos no momento!"
+    open-error: "&3&lREPORT &cO jogador &e{player} &cnao esta online!"
+    teleported: "&3&lREPORT &fVoce foi teleportado para &b{player}&f!"
+    removed: "&3&lREPORT &fReport contra &b{player} &ffoi &cremovido&f!"
+    items:
+      navigation:
+        prev: "&7<< &c&lPagina Anterior"
+        next: "&7>> &c&lProxima Pagina"
+        lore: "&7Clique para ir para a pagina {page}"
+      info:
+        name: "&3&lInformacoes"
+        lore:
+          - ""
+          - "&fTotal de reports: &e{total}"
+          - "&fPagina: &e{page}/{pages}"
+          - ""
+          - "&7Clique nas cabecas para gerenciar"
+      head:
+        name: "&c{player}"
+        lore:
+          - "&8ID: {id}"
+          - ""
+          - "&fReportado por: &b{reporter}"
+          - "&fMotivo: &e{reason}"
+          - "&fHorario: &7{date}"
+          - "&fStatus: {status}"
+          - ""
+          - "&a> Clique Esquerdo &7para teleportar"
+          - "&c> Clique Direito &7para remover"
+
+
+
+
+
+admin:
+  cps:
+    already-monitoring: "&c&lCPS CHECKER &8>> &fEste jogador ja esta sendo monitorado!"
+    started:
+      - ""
+      - "&c&l  CPS CHECKER &8- &7Iniciado"
+      - ""
+      - "&7  Monitorando: &f{player}"
+      - "&7  Duracao: &e10 segundos"
+      - ""
+    action-bar: "&c&lCPS &8>> &f{player} &8| {bar} &e{time}s"
+    quit: "&c&lCPS CHECKER &8>> &fJogador saiu durante o monitoramento!"
+    result:
+      - ""
+      - "&c&l  CPS CHECKER &8- &7Resultado"
+      - ""
+      - "&7  Jogador: &f{player}"
+      - "&7  Total de cliques: &f{clicks}"
+      - "&7  CPS medio: &f{cps}"
+      - ""
+      - "&7  Medidor: {bar}"
+      - "&7  Status: {status}"
+      - ""
+  inventory-title: "&6Inventario de {player}"
+
+
+  trivia:
+    hint: "&7Dica: A resposta comeca com &e\"{hint}...\""
+
+# ==============================================================================
+# 7. AUTENTICACAO (Login, Registro, Premium)
+# ==============================================================================
+premium:
+  authenticated: "&b&lPREMIUM &8>> &f&aVoce foi autenticado automaticamente via conta &b&lPREMIUM&a!"
+  skin-applied: "&b&lPREMIUM &8>> &f&aSua skin premium foi aplicada automaticamente!"
+  welcome: "&b&lPREMIUM &8>> &f&fBem-vindo, &b{player}&f! UUID Premium: &7{uuid}"
+  verifying: "&b&lPREMIUM &8>> &f&eVerificando sua conta com a Mojang..."
+  not-premium: "&b&lPREMIUM &8>> &f&7Voce esta usando uma conta nao-premium."
+  status: "&b&lPREMIUM &8>> &f&fStatus: {status}"
+  verification-failed: "&c&lERRO&f &cFalha na verificacao premium: &7{reason}"
+  timeout: "&c&lERRO&f &cTimeout ao verificar com a Mojang. Entrando como nao-premium."
+  crypto-error: "&c&lERRO&f &cErro de criptografia na verificacao."
+  system-enabled: "&b&lPREMIUM &8>> &f&aSistema de autenticacao premium &aATIVO&f!"
+  system-disabled: "&b&lPREMIUM &8>> &f&cSistema de autenticacao premium &cDESATIVADO&f (ProtocolLib nao encontrado)."
+  stats: "&b&lPREMIUM &8>> &f&fEstatisticas: &e{sessions} &fsessoes ativas, &e{cached} &fpremium em cache."
+
+auth:
+  please-register: "&e&lAUTH &8>> &f&fVoce nao esta registrado! Use &e/register <senha> <confirmar>"
+  register-usage: "&e&lAUTH &8>> &f&cUso: &e/register <senha> <confirmar_senha>"
+  register-success: "&e&lAUTH &8>> &f&aVoce foi &lREGISTRADO &acom sucesso!"
+  register-failed: "&e&lAUTH &8>> &f&cErro ao registrar. Tente novamente."
+  already-registered: "&e&lAUTH &8>> &f&cVoce ja esta registrado! Use &e/login <senha>"
+  password-mismatch: "&e&lAUTH &8>> &f&cAs senhas nao coincidem!"
+  welcome-registered: "&e&lAUTH &8>> &f&7Lembre-se de sua senha para o proximo login!"
+  please-login: "&e&lAUTH &8>> &f&fVoce precisa fazer login! Use &e/login <senha>"
+  login-usage: "&e&lAUTH &8>> &f&cUso: &e/login <senha>"
+  login-success: "&e&lAUTH &8>> &f&aLogin realizado com &lSUCESSO&a! Bem-vindo!"
+  login-failed: "&e&lAUTH &8>> &f&cFalha no login. Tente novamente."
+  already-logged-in: "&e&lAUTH &8>> &f&aVoce ja esta logado!"
+  not-registered: "&e&lAUTH &8>> &f&cVoce nao esta registrado! Use &e/register <senha> <confirmar>"
+  wrong-password: "&e&lAUTH &8>> &f&cSenha incorreta! Tente novamente."
+  too-many-attempts: "&e&lAUTH &8>> &f&cMuitas tentativas! Aguarde e tente novamente."
+  auto-login: "&e&lAUTH &8>> &f&aLogin automatico realizado! Bem-vindo de volta!"
+  changepass-usage: "&e&lAUTH &8>> &f&cUso: &e/changepassword <senha_atual> <nova_senha> <confirmar>"
+  password-changed: "&e&lAUTH &8>> &f&aSua senha foi &lALTERADA &acom sucesso!"
+  same-password: "&e&lAUTH &8>> &f&cA nova senha deve ser diferente da atual!"
+  must-login-first: "&e&lAUTH &8>> &f&cVoce precisa fazer login primeiro!"
+  timeout-warning: "&e&lAUTH &8>> &f&cVoce tem &e{seconds} segundos &cpara se autenticar!"
+  timeout-kick: |
+    
+    &c&lVoce foi desconectado!
+    
+    &fMotivo: &eVoce nao se autenticou a tempo.
+    
+    &7Reconecte e use &e/login &7ou &e/register
+  system-disabled: "&e&lAUTH &8>> &f&cO sistema de autenticacao esta desativado."
+
+# ==============================================================================
+# 8. VIP E MULTIPLICADORES
+# ==============================================================================
+multiplier:
+  activated: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&aMultiplicador {type} &aativado! &7(&a+{bonus}% de coins&7) Duracao: &e{time}"
+  activated-admin: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&aUm administrador ativou o multiplicador {type} &apara voce! Duracao: &e{time}"
+  extended: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&aTempo do multiplicador {type} &aestendido! Novo tempo: &e{time}"
+  extended-different: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&aVoce usou {used_type}&a para estender {active_type}&a! Novo tempo: &e{time}"
+  upgraded: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&aMultiplicador &cupgradado&a de {old_type} para {new_type}&a! Tempo: &e{time}"
+  expired: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&cSeu multiplicador {type} &cexpirou!"
+  expired-offline: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&cSeu multiplicador {type} &cexpirou enquanto voce estava offline."
+  still-active: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&aVoce possui o multiplicador {type} &aativo! Tempo restante: &e{time}"
+  received: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&aVoce recebeu &e{amount}x &fmultiplicador {type}&a!"
+  coins-bonus: "&6&l[BOLT] &eMULTIPLICADOR &8>> &f&a+{total} coins &7({base} + {bonus} de bonus {type}&7)"
+  not-available: "&c&lMULTIPLICADOR &fVoce nao possui o multiplicador {type}&f!"
+  invalid-type: "&c&lMULTIPLICADOR &fTipo de multiplicador invalido!"
+
+# ==============================================================================
+# 9. HABILIDADES (Mensagens especificas de Kits)
+# ==============================================================================
+ability:
+  cooldown: "&6&lHAUMEAMC&f Aguarde &e{time}s&f para usar o kit &e{kit}&f novamente."
+  protected: "&6&lHAUMEAMC&f Voce ou o alvo esta em area protegida!"
+  target-protected: "&6&lHAUMEAMC&f O jogador esta no spawn!"
+  target-offline: "&6&lHAUMEAMC&f O alvo nao esta mais online!"
+  neo:
+    blocked: "&c&lHAUMEAMC&f O jogador esta utilizando o kit Neo!"
+  gladiator:
+    arena-created: "&6&lHAUMEAMC&f Arena criada! Lute ate a morte!"
+    challenged: "&6&lHAUMEAMC&f Voce foi desafiado por &e{player}&f! Lute!"
+    already-in-arena: "&c&lHAUMEAMC&f Voce ja esta em uma arena!"
+    target-in-arena: "&c&lHAUMEAMC&f O jogador ja esta em uma arena!"
+    wither-applied: "&c&lHAUMEAMC&f A luta esta demorando! Wither aplicado!"
+    timeout: "&c&lHAUMEAMC&f Tempo esgotado! Arena destruida!"
+    left-arena: "&c&lHAUMEAMC&f Voce saiu dos limites da arena!"
+    no-build: "&c&lHAUMEAMC&f Voce nao pode colocar blocos na arena!"
+    no-break: "&c&lHAUMEAMC&f Voce nao pode quebrar blocos na arena!"
+  ninja:
+    no-target: "&c&lHAUMEAMC&f Voce precisa atacar alguem primeiro!"
+    teleported: "&6&lHAUMEAMC&f Voce teleportou para as costas de &e{player}&f!"
+    different-arena: "&c&lHAUMEAMC&f Voces precisam estar na mesma arena!"
+  grappler:
+    point-set: "&6&lHAUMEAMC&f Ponto do gancho definido!"
+    no-point: "&c&lHAUMEAMC&f Defina um ponto primeiro (clique esquerdo)!"
+    different-world: "&c&lHAUMEAMC&f O ponto do gancho esta em outro mundo!"
+  kangaroo:
+    air-jump-used: "&c&lHAUMEAMC&f Voce ja usou seu pulo no ar!"
+  jumper:
+    no-gladiator: "&c&lHAUMEAMC&f Voce nao pode usar isso na arena do Gladiator!"
+  switcher:
+    switched: "&6&lHAUMEAMC&f Voce trocou de lugar com &e{player}&f!"
+    was-switched: "&c&lHAUMEAMC&f Voce foi teletransportado por &e{player}&f!"
+  stomper:
+    hit: "&c&lHAUMEAMC&f Voce foi atingido pelo Stomper de &e{player}&f!"
+    ducked: "&6&lHAUMEAMC&f Voce se abaixou e evitou o impacto!"
+    steelhead-victim: "&6&lHAUMEAMC&f Seu capacete de aco protegeu voce!"
+    steelhead-attacker: "&c&lHAUMEAMC &e{player}&f tem Steelhead!"
+  
+  # Descricoes para menus
+  description:
+    anchor: "Remove knockback ao atacar ou ser atacado."
+    fireman: "Imunidade a fogo, lava e fire tick."
+    fisherman: "Puxa jogadores com a vara de pesca."
+    flash: "Teleporta para o bloco que esta olhando."
+    gladiator: "Desafia jogadores para uma arena de vidro no ceu."
+    grappler: "Gancho que puxa voce para um ponto definido."
+    jumper: "Monta em uma ender pearl e viaja junto."
+    kangaroo: "Permite pulos duplos verticais e horizontais."
+    magma: "Imune a fogo e chance de queimar atacantes."
+    neo: "Imunidade total a projeteis."
+    ninja: "Teleporta para as costas do ultimo alvo atacado."
+    quickdrop: "Drop automatico de bowls vazios."
+    snail: "Aplica lentidao ao atacar jogadores."
+    spider: "Lanca teias temporarias que prendem inimigos."
+    steelhead: "Anula o dano do kit Stomper."
+    stomper: "Transfere dano de queda para jogadores proximos."
+    switcher: "Troca de posicao com jogadores ao acertar snowball."
+    thor: "Invoca raios com o martelo Mjolnir."
+    viper: "Chance de envenenar ao atacar."
+
+# ==============================================================================
+# 10. DUELOS E TROCAS (Mensagens adicionais do sistema)
+# ==============================================================================
+duel:
+  queue:
+    join: "&6&lHAUMEA&f&lMC&8 >>&f &aVoce entrou na fila de duelos!"
+    join-info: "&6&lHAUMEA&f&lMC&8 >>&f &7Jogadores na fila: &e{count}"
+    leave-info: "&6&lHAUMEA&f&lMC&8 >>&f &7Use &e/duel sair &7para sair da fila."
+    leave: "&6&lHAUMEA&f&lMC&8 >>&f &cVoce saiu da fila de duelos."
+    already-in: "&c&lERRO&f Voce ja esta na fila!"
+    already-in-duel: "&c&lERRO&f Voce ja esta em um duelo!"
+    pending-challenge: "&c&lERRO&f Voce tem um desafio pendente! Use &e/duel deny &cpara cancelar."
+    combat: "&c&lERRO&f Voce esta em combate!"
+    not-in-queue: "&c&lERRO&f Voce nao esta na fila!"
+    no-arena: "&c&lERRO&f Nenhuma arena disponivel no momento!"
+  
+  challenge:
+    cant-self: "&c&lERRO&f Voce nao pode desafiar a si mesmo!"
+    target-busy: "&c&lERRO&f Voce nao pode desafiar enquanto esta na fila ou em duelo!"
+    target-occupied: "&c&lERRO&f {player} esta ocupado(a)!"
+    already-pending: "&c&lERRO&f {player} ja tem um desafio pendente!"
+    already-sent: "&c&lERRO&f Voce ja enviou um desafio! Aguarde a resposta."
+    combat-block: "&c&lERRO&f Um dos jogadores esta em combate!"
+    sent: "&6&lHAUMEA&f&lMC&8 >>&f &aDesafio enviado para &e{player}&a!"
+    sent-info: "&6&lHAUMEA&f&lMC&8 >>&f &7Aguardando resposta... (expira em &e{time}s&7)"
+    notification_title: "&e&l[DUEL] DESAFIO DE DUELO!"
+    notification_subtitle: "&f{challenger} &7te desafiou para um 1v1!"
+    notification_settings: "&7Configuracoes: {settings}"
+    notification_expires: "&7Expira em &e{time} segundos&7!"
+    no-pending: "&c&lERRO&f Voce nao tem nenhum desafio pendente!"
+    challenger-offline: "&c&lERRO&f O desafiante nao esta mais online!"
+    challenger-busy: "&c&lERRO&f O desafiante agora esta ocupado!"
+    denied: "&c&lERRO&f Voce recusou o desafio."
+    denied-broadcast: "&c&lERRO&f {player} recusou seu desafio."
+    admin-ended: "&c&lERRO&f O duelo foi encerrado por um administrador."
+    
+  result:
+    victory: "&a&lVITORIA!"
+    defeat: "&c&lDERROTA!"
+    duration: "&7Duracao: {time}"
+    victory-msg: "&6&lHAUMEA&f&lMC&8 >>&f &aVoce venceu o duelo contra &e{loser}&a!"
+    defeat-msg: "&6&lHAUMEA&f&lMC&8 >>&f &cVoce perdeu o duelo contra &e{winner}&c."
+  
+  error:
+    unavailable: "&cSistema de duelos nao esta disponivel."
+    player-offline: "&cJogador nao encontrado: &e{player}"
+    self: "&cVoce nao pode desafiar a si mesmo!"
+    
+  help:
+    header: "&8&m-----------------------------------------"
+    title: "  &e&l[DUEL] DUELOS 1v1 &8- &7Comandos"
+    footer: "&8&m-----------------------------------------"
+    
+  stats:
+    header: "&8&m-----------------------------------------"
+    title: "  &e&l[DUEL] SUAS ESTATISTICAS DE 1v1"
+    footer: "&8&m-----------------------------------------"
+    duration: "&7Duracao: {time}"
+    victory-msg: "&6&lHAUMEA&f&lMC&8 >>&f &aVoce venceu o duelo contra &e{loser}&a!"
+    defeat-msg: "&6&lHAUMEA&f&lMC&8 >>&f &cVoce perdeu o duelo contra &e{winner}&c."
+
+# ==============================================================================
+# 10. PAGAMENTOS/TRANSFERÊNCIAS (Sistema de /pagar)
+# ==============================================================================
+# NOTA: Este é um sistema de PAGAMENTO, não de TROCA!
+# - O jogador A paga coins para o jogador B
+# - O jogador B precisa aceitar para receber
+# - Há uma taxa de 2% descontada do valor
+pay:
+  # Mensagens de erro
+  error:
+    unavailable: "&c&lPAGAMENTO &fSistema de pagamentos nao esta disponivel!"
+    player-offline: "&c&lPAGAMENTO &fJogador &e{player} &fnao encontrado!"
+    invalid-amount: "&c&lPAGAMENTO &fQuantia invalida! Use numeros ou &e1k&f, &e10k&f, &e1m&f."
+    zero-amount: "&c&lPAGAMENTO &fA quantia deve ser maior que zero!"
+    self: "&c&lPAGAMENTO &fVoce nao pode pagar a si mesmo!"
+    not-enough: "&c&lPAGAMENTO &fVoce nao tem coins suficientes!"
+    pending: "&c&lPAGAMENTO &fVoce ja tem um pagamento pendente para este jogador!"
+    min-amount: "&c&lPAGAMENTO &fO valor minimo e &e{min} coins&f!"
+    max-amount: "&c&lPAGAMENTO &fO valor maximo e &e{max} coins&f!"
+    cooldown: "&c&lPAGAMENTO &fAguarde &e{time} &fpara enviar outro pagamento!"
+    no-pending: "&c&lPAGAMENTO &fVoce nao tem nenhum pagamento pendente!"
+    expired: "&c&lPAGAMENTO &fO pagamento de &e{player} &fexpirou."
+    sender-offline: "&c&lPAGAMENTO &fO jogador que enviou o pagamento nao esta mais online!"
+    sender-insufficient: "&c&lPAGAMENTO &fO jogador nao tem mais coins suficientes!"
+  
+  # Mensagens de envio de pagamento (para quem esta pagando)
+  sent:
+    header: "&8&m----------&r  &6&lPAGAMENTO  &8&m----------&r"
+    title: "  &a&l[OK] &fPagamento enviado para &e{player}&f!"
+    amount: "  &7Valor: &e{amount} coins"
+    tax: "  &7Taxa (&e2%&7): &c-{tax} coins"
+    net: "  &7Valor que sera recebido: &a{net} coins"
+    waiting: "  &8Aguardando &e{player} &8aceitar..."
+    expiry: "  &8Expira em &760 segundos&8."
+    footer: "&8&m---------------------------------------&r"
+  
+  # Mensagens de recebimento de pagamento (para quem vai receber)
+  received:
+    header: "&8&m----------&r  &e&lPAGAMENTO RECEBIDO  &8&m----------&r"
+    title: "  &e&l$ &e{player} &fquer te enviar coins!"
+    amount: "  &7Valor: &a{net} coins"
+    accept: "  &a/pagar aceitar &8- &7Receber o pagamento"
+    deny: "  &c/pagar recusar &8- &7Recusar o pagamento"
+    expiry: "  &8O pagamento expira em &760 segundos&8."
+    footer: "&8&m---------------------------------------------&r"
+  
+  # Mensagens de sucesso (pagamento aceito)
+  success:
+    sender:
+      title: "&a&l[OK] PAGAMENTO CONCLUIDO!"
+      message: "  &fVoce enviou &e{amount} coins &fpara &e{player}&f!"
+      tax: "  &7Taxa cobrada: &c{tax} coins"
+    receiver:
+      title: "&a&l[OK] PAGAMENTO RECEBIDO!"
+      message: "  &fVoce recebeu &e{net} coins &fde &e{player}&f!"
+  
+  # Mensagens de recusa (pagamento negado)
+  denied:
+    sender: "&c&lPAGAMENTO &e{player} &frecusou seu pagamento."
+    receiver: "&c&lPAGAMENTO &fVoce recusou o pagamento de &e{player}&f."
+
+spawn:
+  set:
+    header: "&6&lSPAWN DO SERVIDOR {status}"
+    world: "&fMundo: &e{world}"
+    coords: "&fCoordenadas: &e{coords}"
+    rotation: "&fRotacao: &e{rotation}"
+    radius: "&6Raio de protecao: &e{radius} blocos"
+    protected-info: "&7Jogadores dentro deste raio estao protegidos."
+    teleport-info: "&7Use &e/spawn &7para teleportar ao spawn."
+    hint: "&8Dica: Use /setspawn <raio> para alterar o raio."
+
+# ==============================================================================
+# 11. DESAFIOS E CONQUISTAS (Mensagens adicionais do sistema)
+# ==============================================================================
+daily:
+  complete:
+    header: "&a&l[OK] DESAFIO COMPLETO!"
+    reward: "&aRecompensa: &e{amount} coins"
+
+achievement:
+  unlock:
+    header: "&6&l* CONQUISTA DESBLOQUEADA! *"
+    reward: "&aRecompensa: &e{amount} coins"
+
+# ==============================================================================
+# 12. COMANDOS (Mensagens de erro e bloqueio)
+# ==============================================================================
+command:
+  stats:
+    header:
+      - ""
+      - "&6&l  HAUMEA STATS &8- &7Gerenciador de Estatisticas"
+      - ""
+      - "&e  Uso: &f/haumeastats <jogador> <operacao> <tipo> <valor>"
+      - ""
+      - "&6  Operacoes:"
+      - "    &a* add &8- &7Adiciona ao valor atual"
+      - "    &e* set &8- &7Define um valor exato"
+      - "    &c* remove &8- &7Remove do valor atual"
+      - ""
+      - "&6  Tipos de Estatistica:"
+      - "    &7* &fkills &8- &7Abates"
+      - "    &7* &fdeaths &8- &7Mortes"
+      - "    &7* &fstreak &8- &7Killstreak atual"
+      - "    &7* &felo &8- &7Pontos de ELO"
+      - "    &7* &fmoedas &8- &7Coins do jogador"
+      - ""
+      - "&6  Multiplicadores:"
+      - "    &7* &fmultiplicador1 &8- &7Basico (x1.5)"
+      - "    &7* &fmultiplicador2 &8- &7Intermediario (x2.0)"
+      - "    &7* &fmultiplicador3 &8- &7Avancado (x2.5)"
+      - "    &7* &fmultiplicador4 &8- &7Premium (x3.0)"
+      - "    &7* &fmultiplicador5 &8- &7Maximo (x3.5)"
+      - ""
+      - "&6  Exemplo: &f/haumeastats Steve set elo 1500"
+      - ""
+    error:
+      manager-unavailable: "&6&lHAUMEAMC&f &cErro: Manager nao disponivel."
+      invalid-operation: "&6&lHAUMEAMC&f Operacao invalida. Use: add, set ou remove."
+      invalid-type: "&6&lHAUMEAMC&f Tipo invalido. Use: kills, deaths, streak, elo, moedas ou multiplicador[2-5]."
+      invalid-value: "&6&lHAUMEAMC&f Valor invalido. Use um numero."
+      player-not-found: "&6&lHAUMEAMC&f Jogador &c{player}&f nao encontrado."
+      db-not-found: "&6&lHAUMEAMC&f Jogador &c{player}&f nao encontrado no banco de dados."
+    success:
+      admin: "&6&lHAUMEAMC&f Estatistica &e{type}&f de &a{player}&f {operation} &e{value}&f."
+      admin-offline: "&6&lHAUMEAMC&f Estatistica &e{type}&f de &a{player}&f {operation} &e{value}&f. &7(offline)"
+      combo-rank: "&7Nova liga: {rank}"
+    notification: "&6&lHAUMEAMC&f Sua estatistica &e{type}&f foi {operation} &e{value}&f por um administrador."
+    operations:
+      set: "definida como"
+      add: "aumentada para"
+      remove: "reduzida para"
+      admin-set: "definida como"
+      admin-add: "alterada para"
+      admin-remove: "alterada para"
+  unknown:
+    lines: |
+      
+      &8&m                                                    
+      
+         &c&l &c&lCOMANDO DESCONHECIDO
+      
+         &7O comando &f&n/{command} &7nao foi encontrado.
+         &7Verifique a digitacao ou tente outro comando.
+      
+         &e&lSUGESTOES DE COMANDOS:
+      
+         &6 &f/spawn &8- &7Voltar ao lobby
+         &6 &f/kit &8- &7Escolher seu kit
+         &6 &f/conta &8- &7Ver estatisticas
+         &6 &f/ranking &8- &7Ver classificacao
+      
+      &8&m                                                    
+
+  reiniciar:
+    usage: "&c&lREINICIAR &fUtilize: &e/reiniciar [tempo]&f ou &e/reiniciar cancelar"
+    already-starting: "&c&lREINICIAR &fO servidor ja esta reiniciando! Digite &e/reiniciar cancelar &fpara abortar."
+    not-starting: "&c&lREINICIAR &fNao ha uma reinicializacao em andamento."
+    cancelled: "&a&lREINICIAR &fReinicializacao cancelada com sucesso!"
+    countdown: |
+      
+      &8&m===================================&r
+      
+                  &c&l[!] &4&lREINICIALIZACAO &c&l[!]"
+      
+              &fO servidor será &c&lREINICIADO &fem:
+      
+                     &e&l» {time} &fSEGUNDOS
+      {reason_suffix}
+      
+            &7Prepare-se! Seu progresso foi salvo.
+      
+      &8&m===================================&r
+    countdown-title: "&4&lREINICIANDO"
+    countdown-subtitle: "&fO servidor reinicia em &e{time}s"
+    now: "&c&lREINICIAR &fO servidor esta &4&lREINICIANDO AGORA&f!"
+
+# ==============================================================================
+# 13. MENSAGENS DE LISTENERS E OUTROS (veja admin: abaixo na seção 17)
+# ==============================================================================
+
+
+
+report:
+  staff-notification:
+    header: "&8&m===================================&r"
+    title: "  &c&l[!] NOVA DENUNCIA RECEBIDA [!]"
+    target-label: "  &7Jogador Denunciado:"
+    target: "  &f» &b&l{target}"
+    reason-label: "  &7Motivo:"
+    reason: "  &f» &e{reason}"
+    reporter-label: "  &7Denunciante:"
+    reporter: "  &f» &a{reporter}"
+    time-label: "  &7Data e Hora:"
+    time: "  &f» &7{time}"
+    action-hint: "  &eClique &7em &a/reports &7para gerenciar."
+    footer: "&8&m===================================&r"
+
+  list:
+    no-permission: "&3&lREPORT &f&cVoce nao tem permissao para ver os reports!"
+    clear-no-permission: "&3&lREPORT &f&cVoce nao tem permissao para limpar reports!"
+    cleared: "&3&lREPORT &f&a{count} &freport(s) concluido(s) foram removidos!"
+    header: "&3&lREPORT &fVoce tem &3&l{count} &fREPORT(s) no momento! Utilize: &e/report list"
+  
+  cooldown: "&3&lREPORT &f&cAguarde &e{time}s &cpara enviar outro report!"
+  
+  error:
+    offline: "&3&lREPORT &f&cO jogador &e{player} &cnao esta online!"
+    self: "&3&lREPORT &f&cVoce nao pode reportar a si mesmo!"
+    generic: "&3&lREPORT &f&cOcorreu um erro ao enviar o report!"
+    
+  success:
+    header: "&3&lREPORT &fSeu report contra &b{target} &ffoi enviado com sucesso!"
+    footer: "&7A equipe ira analisar em breve. Obrigado!"
+
+  usage:
+    header: "&3&l  REPORT &8- &7Sistema de Denuncias"
+    usage: "&e  Uso: &f/report <jogador> <motivo>"
+    args:
+      - "&6  Argumentos:"
+      - "    &7* &fjogador &8- &7Nome do jogador a ser denunciado"
+      - "    &7* &fmotivo &8- &7Razao da denuncia"
+    examples:
+      - "&6  Exemplos:"
+      - "    &f/report Steve Uso de hack"
+      - "    &f/report Steve Ofensas no chat"
+    footer: "&7  A equipe ira analisar seu report em breve."
+
+  # Mensagens do comando /gotowatch (teleporte para observar jogador reportado)
+  goto:
+    success: "&6&lHAUMEAMC&f Teleportado para &e{target}&f em X:{x} Y:{y} Z:{z}. Modo &c&lADMIN&f ativado!"
+    player-offline: "&c&lERRO&f O jogador &e{player}&f nao esta online!"
+    self: "&c&lERRO&f Voce nao pode observar a si mesmo!"
+
+teleport-extra:
+  countdown: "&eTeleportando em &f{time}&e..."
+
+# ==============================================================================
+# 14. LOJA E MENUS
+# ==============================================================================
+shop:
+  kits:
+    title: "&6&l[DUEL] LOJA DE KITS"
+    page: "&6&l[DUEL] LOJA DE KITS &8- &fPagina {page}"
+    lore:
+      - ""
+      - "&7Compre ou alugue kits de"
+      - "&7habilidades especiais!"
+      - ""
+      - "&6Opcoes disponiveis:"
+      - "&8* &7Aluguel: &e1d &7/ &e7d &7/ &e30d"
+      - "&8* &7Permanente: &a&lETERNO"
+      - ""
+
+  balance:
+    title: "&e&lSEU SALDO"
+    lore:
+      header: ""
+      coins: "&fMoedas: &e{coins}"
+      spacer: ""
+      footer1: "&7Clique em um kit para"
+      footer2: "&7ver opcoes de compra!"
+      footer3: ""
+
+  item:
+    prices-header: "&6Precos:"
+    price-day: "&8* &71 dia: &e{price} coins"
+    price-week: "&8* &71 semana: &e{price} coins"
+    price-month: "&8* &71 mes: &e{price} coins"
+    price-perm: "&8* &a&lPERMANENTE: &e{price} coins"
+    
+    status:
+      owned-perm: "&a&l VOCE JA POSSUI (Permanente)"
+      rented: "&a&l ALUGADO"
+      expires: "&eExpira em: &f{time}"
+      owned: "&a&l VOCE JA POSSUI"
+      click-buy: "&e Clique para comprar!"
+
+  error:
+    already-permanent: "&c&lHAUMEAMC &fVoce ja possui este kit permanentemente!"
+
+# ==============================================================================
+# 15. PERFIL E RECOMPENSAS DIARIAS
+# ==============================================================================
+
+
+
+# ==============================================================================
+# 16. CHAT GAMES (Eventos de Chat Matematicos, Trivia, etc)
+# ==============================================================================
+chatevent:
+  broadcast:
+    start:
+      header: "&8&m------------------------------------------"
+      footer: "&8&m------------------------------------------"
+      help: "&7Digite a resposta no chat!"
+      info: "&7Tempo: &e{time}s &7| Premio: &6&l{reward} moedas"
+    
+    end:
+      header: "&6&l EVENTO FINALIZADO! "
+      answer: "&7Resposta: &a&l{answer}"
+      no-winner: "&7Ninguem acertou a tempo!"
+      winners-header: "&e&lGANHADORES:"
+      winner-format: "{medal} {player} &7>> &e{reward} moedas &7({time}s)"
+      
+    cancel:
+      header: "&6&lEVENTO CANCELADO!"
+      
+    reminder:
+      header: "&8&m--------------&r {type} &8&m--------------"
+      info: "&7[TIME] Tempo: &e{time}s &7| Faltam: &a{missing} ganhador(es)"
+      
+  position:
+    title: "{effect}{medal} {player} &8>> &f&l{ordinal} LUGAR!"
+    reward: "&8| &fPremio: &6+{reward} moedas"
+
+  error:
+    already-active: "&c&lERRO! &fJa existe um evento de chat ativo!"
+    invalid-type: "&c&lERRO! &fTipo de evento invalido: &e{type}"
+    start-failed: "&c&lERRO! &fNao foi possivel iniciar o evento."
+    missing-separator: "&c&lERRO! &fFormato invalido! Use o separador &e|&f entre pergunta e resposta."
+    empty-question: "&c&lERRO! &fA pergunta nao pode estar vazia!"
+    empty-answer: "&c&lERRO! &fA resposta nao pode estar vazia!"
+    custom-failed: "&c&lERRO! &fNao foi possivel iniciar o evento customizado."
+    no-active: "&c&lERRO! &fNenhum evento de chat ativo!"
+    reminder-range: "&c&lERRO! &fO intervalo deve estar entre &e5&f e &e60&f segundos!"
+    reminder-invalid: "&c&lERRO! &fValor invalido! Use um numero entre 5 e 60."
+    
+  success:
+    started: "&a&lSUCESSO! &fEvento de chat iniciado!"
+    custom-started: "&a&lSUCESSO! &fEvento customizado iniciado!"
+    stopped: "&a&lSUCESSO! &fEvento de chat cancelado!"
+    skipped: "&a&lSUCESSO! &fNovo evento de chat iniciado!"
+    auto-on: "&a&lSUCESSO! &fEventos automaticos &aativados&f!"
+    auto-off: "&a&lSUCESSO! &fEventos automaticos &cdesativados&f!"  
+    reminder-set: "&a&lSUCESSO! &fIntervalo de lembrete definido para &e{seconds}s&f!"
+    
+  help:
+    header: "&6&l  CHAT EVENT &8- &7Gerenciamento de eventos de chat"
+    custom-header: "&6&l  EVENTO CUSTOMIZADO"
+    
+  types:
+    header: "   &6&l* TIPOS DE EVENTOS DE CHAT *"
+    
+  info:
+    header: "   &6&l[BOLT] STATUS DO EVENTO DE CHAT"
+
+# ==============================================================================
+# 17. ADMIN MODE (Modo admin, inspecao de inventario, etc)
+# ==============================================================================
+admin:
+  teleport: "&6&lHAUMEAMC&f Voce se teleportou ate &e{player}&f."
+  inventory-title: "&6Inventario de {player}"
+  
+  info:
+    header: "&8&m----------------------------------------"
+    title: "&e&lINFORMACOES DE &f{player}"
+    group: "&7Grupo: &f{group}"
+    health: "&7Vida: &c{health}&7/&c20"
+    food: "&7Fome: &a{food}&7/&a20"
+    gamemode: "&7Gamemode: &f{gamemode}"
+    ping: "&7Ping: &f{ping}ms"
+    location: "&7Localizacao: &f{location}"
+    kills: "&7Kills: &e{kills}"
+    deaths: "&7Deaths: &e{deaths}"
+    kdr: "&7KDR: &e{kdr}"
+    coins: "&7Coins: &6{coins}"
+    combat: "&7Em combate: {status}"
+    frozen: "&7Congelado: {status}"
+    footer: "&8&m----------------------------------------"
+
+# ==============================================================================
+# 18. SISTEMA DE RANKING
+# ==============================================================================
+ranking:
+  error:
+    unavailable: "&cSistema de ranking nao disponivel!"
+    
+  help:
+    header: "&6&l  TOP &8- &7Rankings globais"
+    
+  header: "&8&m----------------------------------------"
+  footer: "&8&m----------------------------------------"
+  empty: "  &7Nenhum jogador no ranking ainda."
+  your-position: "  &7Sua posicao: &e#{position}"
+  not-ranked: "  &7Voce ainda nao esta no ranking."
+
+# ==============================================================================
+# 24. SISTEMA DE SKINS
+# ==============================================================================
+
+
+# ==============================================================================
+# 25. SISTEMA DE IGNORE
+# ==============================================================================
+ignore:
+  error:
+    self: "&cVoce nao pode ignorar a si mesmo!"
+    limit: "&cVoce atingiu o limite maximo de &e{limit}&c jogadores ignorados!"
+    already: "&cVoce ja esta ignorando &e{player}&c!"
+    not-ignoring: "&cVoce nao esta ignorando &e{player}&c!"
+    empty: "&cSua lista de ignorados ja esta vazia!"
+    unavailable: "&cSistema de ignore nao esta disponivel!"
+    player-offline: "&cJogador &e{player}&c nao esta online!"
+    
+  help:
+    header: "&6&l  IGNORE &8- &7Sistema de bloqueio"
+    
+  list:
+    empty: "&6&lHAUMEAMC&f Voce nao esta ignorando nenhum jogador."
+    header: "&6&l  JOGADORES IGNORADOS &8(&e{count}&8)"
+    
+  added: "&6&lHAUMEAMC&f Voce agora esta ignorando &e{player}&f."
+  removed: "&6&lHAUMEAMC&f Voce parou de ignorar &e{player}&f."
+  cleared: "&6&lHAUMEAMC&f Sua lista de ignorados foi limpa."
+
+# ==============================================================================
+# 26. SISTEMA VIP KEY
+# ==============================================================================
+vipkey:
+  # ===== BROADCAST GLOBAL (quando alguem ativa VIP - para todos os jogadores) =====
+  broadcast:
+    - ""
+    - "&8&m--------------------------------------"
+    - ""
+    - "         &6&l* &e&lNOVO VIP ATIVADO &6&l*"
+    - ""
+    - "    &fO jogador &a&l{player} &fativou o cargo"
+    - "    {grupo} &fno servidor!"
+    - ""
+    - "    &7Adquira o seu em: &bhaumeamc.com/loja"
+    - ""
+    - "&8&m--------------------------------------"
+    - ""
+
+  # ===== MENSAGEM PARA O JOGADOR (VIP temporario) =====
+  activation:
+    temporary:
+      - ""
+      - "&8&m--------------------------------------"
+      - ""
+      - "         &a&l* &b&lVIP ATIVADO COM SUCESSO &a&l*"
+      - ""
+      - "    &fParabens! Voce agora possui o cargo:"
+      - "    &8> {grupo}"
+      - ""
+      - "    &e(TIME) Duracao: &f{duracao}"
+      - ""
+      - "    &7Aproveite todos os beneficios exclusivos!"
+      - "    &7Confira seus poderes em &e/vip"
+      - ""
+      - "&8&m--------------------------------------"
+      - ""
+
+    # ===== MENSAGEM PARA O JOGADOR (VIP permanente) =====
+    permanent:
+      - ""
+      - "&8&m--------------------------------------"
+      - ""
+      - "       &6&l* &e&lVIP PERMANENTE ATIVADO &6&l*"
+      - ""
+      - "    &fParabens! Voce agora possui o cargo:"
+      - "    &8> {grupo}"
+      - ""
+      - "    &a&lINFINITO DURACAO: &f&lPARA SEMPRE!"
+      - ""
+      - "    &7Este cargo e VITALICIO e nunca expira!"
+      - "    &7Confira seus poderes em &e/vip"
+      - ""
+      - "&8&m--------------------------------------"
+      - ""
+
+    # ===== MENSAGEM PARA O JOGADOR (VIP estendido) =====
+    extended:
+      - ""
+      - "&8&m--------------------------------------"
+      - ""
+      - "         &b&l^ &a&lVIP ESTENDIDO &b&l^"
+      - ""
+      - "    &fSeu tempo de VIP foi aumentado!"
+      - ""
+      - "    &e(TIME) Tempo adicionado: &f{duracao}"
+      - ""
+      - "    &7Obrigado por continuar conosco!"
+      - ""
+      - "&8&m--------------------------------------"
+      - ""
+
+  # Mensagens simples (fallback)
+  no_vip: "&7Voce nao possui nenhum VIP ativo."
+  invalid: "&cChave invalida ou nao encontrada."
+  already_used: "&cEsta chave ja foi utilizada."
+  expired: "&cEsta chave expirou e nao pode mais ser usada."
+  
+  error:
+    player-only: "&cApenas jogadores podem ativar chaves."
+    group-not-found: "&cO grupo desta chave nao existe mais."
+    invalid-quantity: "&cQuantidade invalida: {value}"
+    invalid-expiry: "&cValidade invalida: {value}"
+    invalid-duration: "&cDuracao invalida: {value}"
+    create-failed: "&cErro ao criar chaves."
+    delete-failed: "&cErro ao deletar chave."
+    
+  help:
+    header: "&6&l  HAUMEA VIP &8- &7Sistema de Chaves VIP"
+    create-header: "&6&l  CRIAR CHAVE VIP"
+    formats:
+      - "&6  Formatos de tempo:"
+      - "    &7m = minutos, h = horas, d = dias, w = semanas"
+      - "    &7mo = meses (30 dias), y = anos (365 dias)"
+      - "    &7permanent/perm = permanente"
+    
+  info:
+    header: "&6&l  SEUS GRUPOS VIP"
+    vip-active: "&eVIP Ativo: &a{grupo} &7| Expira em: &e{tempo}"
+    
+  admin:
+    group_invalid: "&cO grupo &e{grupo}&c nao existe!"
+    not_found: "&cChave nao encontrada."
+    deleted: "&a&lSUCESSO! &fChave &e{chave}&f deletada!"
+    already-used: "&cEsta chave ja foi usada e nao pode ser deletada."
+    delete-usage: "&cUso: /haumeavip deletar <codigo>"
+    check-usage: "&cUso: /haumeavip check <codigo>"
+    no-keys: "&cNenhuma chave nao usada encontrada."
+    no-keys-group: "&cNenhuma chave nao usada para o grupo &e{group}&c."
+    created-single: "&a&l  CHAVE CRIADA!"
+    created-multi: "&a&l  {count} CHAVES CRIADAS!"
+    info-header: "&6&l  INFORMACOES DA CHAVE"
+
+# ==============================================================================
+# 27. AUTHORITY SYSTEM (Debug de Permissoes)
+# ==============================================================================
+
+
+# ==============================================================================
+# 28. DUEL SYSTEM
+# ==============================================================================
+
+
+# ==============================================================================
+# 30. IGNORE COMMAND (complemento ao sistema de ignore)
+# ==============================================================================
+  # Secao ignore ja existe acima, adicionando as faltantes
+  
+# ignore (adicional):
+#   help:
+#     header: "&6&l  IGNORE &8- &7Sistema de bloqueio"
+#   list:
+#     empty: "&6&lHAUMEAMC&f Voce nao esta ignorando nenhum jogador."
+#     header: "&6&l  JOGADORES IGNORADOS &8(&e{count}&8)"
+#   error:
+#     unavailable: "&cSistema de ignore nao esta disponivel!"
+#     player-offline: "&cJogador &e{player}&c nao esta online!"
+
+# ==============================================================================
+# 31. WARP ADMIN SYSTEM
+# ==============================================================================
+warp:
+  admin:
+    help-header: "  &6&lHAUMEA&e&lWARP &f- Comandos"
+    set-usage: "&6&lHAUMEAMC&f Utilize: &e/haumeawarp set <nome> [raio]"
+    del-usage: "&6&lHAUMEAMC&f Utilize: &e/haumeawarp del <nome>"
+    tp-usage: "&6&lHAUMEAMC&f Utilize: &e/haumeawarp tp <nome>"
+    set: "&6&lHAUMEAMC&f Voce &a&lSETOU &fa warp &e&l{warp} &fcom sucesso!"
+    set-with-radius: "&6&lHAUMEAMC&f Voce &a&lSETOU &fa warp &e&l{warp} &fcom raio de protecao de &e{radius} blocos&f!"
+    updated: "&6&lHAUMEAMC&f Voce &e&lATUALIZOU &fa warp &e&l{warp} &fcom sucesso!"
+    updated-with-radius: "&6&lHAUMEAMC&f Voce &e&lATUALIZOU &fa warp &e&l{warp} &fcom raio de &e{radius} blocos&f!"
+    invalid-radius: "&c&lERRO&f O raio deve ser um numero valido!"
+    deleted: "&6&lHAUMEAMC&f A warp &c&l{warp} &ffoi &c&lDELETADA &fcom sucesso!"
+    not-found: "&6&lHAUMEAMC&f A warp &e&l{warp} &fnao existe!"
+    no-warps: "&6&lHAUMEAMC&f Nao ha nenhuma warp cadastrada."
+    list-header: "  &6&lWARPS &f({count})"
+    teleported: "&6&lHAUMEAMC&f Voce foi teleportado para a warp &e&l{warp}&f!"
+    world-not-loaded: "&6&lHAUMEAMC&f O mundo da warp &e&l{warp} &fnao esta carregado!"
+    reloaded: "&6&lHAUMEAMC&f Warps recarregadas! &7({count} warps)"
+  
+  # Mensagens de protecao de spawn (FPS Mode)
+  lost-protection: "&c&lPROTECAO &fVoce saiu da area de protecao do spawn!"
+  target-protected: "&c&lPROTECAO &fEste jogador esta protegido no spawn!"
+  in-combat: "&c&lERRO&f Voce nao pode voltar ao spawn em combate!"
+  already-in-warp: "&c&lERRO&f Voce ja esta nesta warp!"
+  spawn-not-set: "&c&lERRO&f O spawn desta warp nao foi configurado!"
+  teleported: "&a&lWARP &fVoce foi teleportado para &e{warp}&f!"
+
+# ==============================================================================
+# 32. LISTA DE STAFFS (Comando /staff)
+# ==============================================================================
+stafflist:
+  # Header visual da lista
+  header:
+    - ""
+    - "&8&m-------------&r  &6&l* EQUIPE ONLINE *  &8&m-------------&r"
+  
+  # Footer visual da lista  
+  footer:
+    - "&8&m-------------------------------------------------&r"
+    - "&7   Precisa de ajuda? Chame um de nossos staffs!"
+    - ""
+  
+  # Contagem total de staffs
+  total: "  &e&l{count} &fmembro(s) da equipe online &8(&7de {online} jogadores&8)"
+  
+  # Mensagem quando não há staffs online
+  no-staff: "  &c&lX &fNenhum membro da equipe está online no momento."
+  
+  # Header de cada grupo de staff
+  group-header: "  &6> {group} &8(&e{count}&8)"
+  
+  # Entrada de cada jogador na lista
+  player-entry: "    &8* &f{player}"
+
+# ==============================================================================
+# 33. AUTO MESSAGES (Announcer System)
+# ==============================================================================
+announcer:
+  enabled: true
+  interval: 300 # Segundos entre as mensagens (5 minutos)
+  random: true  # Se deve escolher mensagens aleatoriamente
+  messages:
+    - "&6&lHAUMEA&f&lMC &8>> &fVoce sabia que temos um &9&lDISCORD&f? Participe de sorteios e veja novidades!&eACESSE: &n&bdiscord.gg/haumeamc"
+    - "&6&lVIP &8>> &fAjude o servidor e ganhe vantagens exclusivas (Kits, Fly e mais)!&eLOJA: &a&nloja.haumeamc.com"
+    - "&6&lBOUNTY &8>> &fTem alguem dominando a arena? Coloque um preco na cabeca dele!&fUtilize: &e/bounty <jogador> <quantia>"
+    - "&6&lSKIN &8>> &fEnjoou do seu visual? No HaumeaMC voce pode mudar sua skin a qualquer momento!&fTente agora: &e/skin <nome>"
+    - "&6&lRANKING &8>> &fVoce e competitivo? Verifique sua posicao no ranking global!&fComando: &e/top"
+    - "&6&lREPORT &8>> &fViu um hacker? Nao discuta, denuncie e ajude o servidor!&fUtilize: &c/report <nick> <motivo>"
+
+# ==============================================================================
+# 34. LOJA DE VIPs POR COINS (VIP Shop System)
+# ==============================================================================
+vipshop:
+  # Broadcast quando alguem compra VIP
+  broadcast: "&8[&6&lVIP&8] &e{player} &fadquiriu {vip}&f!"
+  
+  # Mensagens de compra (enviadas ao jogador)
+  purchase:
+    success:
+      header: "&8&m----------&r  {vip}  &8&m----------&r"
+      title: "  &a&l* VIP ATIVADO COM SUCESSO! *"
+      message: "  &fVoce agora e {vip}&f!"
+      duration: "  &fDuracao: &e{duration}"
+      tip: "  &7Aproveite seus beneficios exclusivos!"
+      footer: "&8&m--------------------------------------&r"
+    
+    extended:
+      header: "&8&m----------&r  {vip}  &8&m----------&r"
+      title: "  &a&l[OK] VIP ESTENDIDO COM SUCESSO!"
+      message: "  &fSeu {vip} &ffoi estendido!"
+      duration: "  &fDuracao: &e{duration}"
+      tip: "  &7Aproveite seus beneficios exclusivos!"
+      footer: "&8&m--------------------------------------&r"
+  
+  # Mensagens de erro
+  error:
+    not-enough-coins: "&c&lHAUMEAMC &fVoce nao possui coins suficientes!"
+    already-permanent: "&c&lHAUMEAMC &fVoce ja possui {vip} &fpermanentemente!"
+    generic: "&c&lHAUMEAMC &fErro ao processar sua compra!"
+    
+  # Titulos na tela
+  title:
+    activated:
+      main: "&a&l* VIP ATIVADO *"
+      sub: "{vip}"
+    extended:
+      main: "&a&l* VIP ESTENDIDO *"
+      sub: "{vip} &f+ 7 dias"
+
+# ==============================================================================
+# 35. CASSINO (Sistema de Jogos e Apostas)
+# ==============================================================================
+casino:
+  prefix: "&6&lCASSINO &8>> &f"
+  
+  # Erros gerais
+  error:
+    disabled: "&c&lCASSINO &fO cassino esta desativado no momento!"
+    not-in-spawn: "&c&lCASSINO &fVoce precisa estar no spawn para usar o cassino!"
+    min-bet: "&c&lCASSINO &fAposta minima e &e{min} coins&f!"
+    max-bet: "&c&lCASSINO &fAposta maxima e &e{max} coins&f!"
+    not-enough-coins: "&c&lCASSINO &fVoce nao tem coins suficientes!"
+    daily-limit: "&c&lCASSINO &fVoce atingiu o limite diario de perdas! Volte amanha."
+    game-in-progress: "&c&lCASSINO &fVoce ja esta em um jogo! Termine primeiro."
+    
+  # Slots
+  slots:
+    win: "&a&lVITORIA! &fVoce ganhou &e{amount} coins &7({mult}x)"
+    lose: "&c&lDerrota! &fVoce perdeu &e{amount} coins"
+    jackpot:
+      message: "&6&l* JACKPOT! * &fVoce ganhou &e&l{amount} coins&f!"
+      broadcast:
+        - ""
+        - "&8&m----------&r  &6&l* JACKPOT *  &8&m----------&r"
+        - ""
+        - "   &e&l{player} &fganhou o &6&lJACKPOT &fde &a&l{amount} coins&f!"
+        - ""
+        - "&8&m------------------------------------------&r"
+        - ""
+  
+  # Roleta
+  roulette:
+    win: "&a&lVITORIA! &fNumero {number} - Voce ganhou &e{amount} coins&f!"
+    lose: "&c&lDerrota! &fNumero {number} - Voce perdeu &e{amount} coins"
+    
+  # Blackjack
+  blackjack:
+    win: "&a&lVITORIA! &fVoce ganhou &e{amount} coins&f!"
+    lose: "&c&lDerrota! &fVoce perdeu &e{amount} coins"
+    push: "&e&lEMPATE! &fAposta devolvida: &e{amount} coins"
+    natural: "&6&l* BLACKJACK! * &fVoce ganhou &e{amount} coins &7(2.5x)"
+    bust: "&c&lESTOUROU! &fVoce passou de 21!"
+    dealer-bust: "&a&lDEALER ESTOUROU! &fVoce ganhou!"
+    
+  # Coinflip
+  coinflip:
+    created: "&6&lCASSINO &fCoinflip de &e{amount} coins &fcriado! Aguardando oponente..."
+    cancelled: "&6&lCASSINO &fCoinflip cancelado! Coins devolvidos."
+    expired: "&6&lCASSINO &fSeu coinflip expirou. Coins devolvidos."
+    already-pending: "&c&lCASSINO &fVoce ja tem um coinflip pendente!"
+    not-available: "&c&lCASSINO &fEste coinflip nao esta mais disponivel!"
+    cannot-own: "&c&lCASSINO &fVoce nao pode aceitar seu proprio coinflip!"
+    you-win: "&a&lVITORIA! &fVoce ganhou o coinflip! +&e{amount} coins"
+    you-lose: "&c&lDerrota! &f{winner} venceu o coinflip de &e{amount} coins"
+    broadcast:
+      - ""
+      - "&8&m----------&r  &e&l(O) COINFLIP (O)  &8&m----------&r"
+      - ""
+      - "   &a&l{winner} &fvenceu &c{loser}"
+      - "   &7Premio: &e{amount} coins"
+      - ""
+      - "&8&m------------------------------------------&r"
+      - ""
+    
+  # Crash
+  crash:
+    joined: "&6&lCRASH &fVoce entrou com &e{amount} coins&f! Boa sorte!"
+    left: "&6&lCRASH &fVoce saiu do jogo. Coins devolvidos."
+    started: "&6&lCRASH &aO jogo comecou! Faca cashout antes de crashar!"
+    crashed: "&c&l! CRASHOU EM {mult}x! &fQuem nao saiu, perdeu!"
+    cashout: "&a&lCASHOUT! &fVoce saiu em {mult}x e ganhou &e{amount} coins&f!"
+    you-lost: "&c&lCRASH! &fVoce perdeu &e{amount} coins"
+    already-started: "&c&lCRASH &fO jogo ja esta em andamento! Aguarde o proximo."
+    already-joined: "&c&lCRASH &fVoce ja esta participando!"
+    cannot-leave: "&c&lCRASH &fVoce nao pode sair durante o jogo!"
+
+# ==============================================================================
+# 14. COSMETICOS (Sistema de Cosmeticos de Kill)
+# ==============================================================================
+cosmetic:
+  # Prefixo padrao
+  prefix: "&6&lCOSMETICOS &f"
+  
+  # Compra e desbloqueio
+  purchased: "&6&lCOSMETICOS &aDesbloqueado com sucesso: {cosmetic}"
+  already-owned: "&c&lERRO &fVoce ja possui este cosmetico!"
+  not-enough-coins: "&c&lERRO &fCoins insuficientes! Necessario: &e{price}"
+  no-permission: "&c&lERRO &fVoce nao tem permissao para este cosmetico!"
+  
+  # Selecao
+  selected: "&6&lCOSMETICOS &fVoce selecionou: {cosmetic}"
+  deselected: "&6&lCOSMETICOS &7{type} desativado."
+  not-unlocked: "&c&lERRO &fVoce nao possui este cosmetico!"
+  
+  # Toggle geral
+  enabled: "&6&lCOSMETICOS &aCosmeticos ativados!"
+  disabled: "&6&lCOSMETICOS &cCosmeticos desativados!"
+  
+  # Menu
+  menu:
+    main-title: "&8&l* &6&lCOSMETICOS &8&l*"
+    category-title: "&8{category}"
+    
+  # Tipos de cosmeticos
+  types:
+    kill-effect: "&cEfeito de Kill"
+    kill-sound: "&eSom de Kill"
+    kill-message: "&bMensagem de Kill"
+    death-effect: "&8Efeito de Morte"
+    trail: "&dRastro"
+  
+  # Raridades
+  rarity:
+    common: "&aComum"
+    uncommon: "&eIncomum"
+    rare: "&bRaro"
+    epic: "&dEpico"
+    legendary: "&6Lendario"
+    mythic: "&cMitico"
+    
+  # Admin
+  admin:
+    give-success: "&a&lSUCESSO &fCosmetico &e{cosmetic} &fdado para &e{player}"
+    give-received: "&6&lCOSMETICOS &fVoce recebeu o cosmetico {cosmetic} &fde presente!"
+    not-found: "&c&lERRO &fCosmetico &e{id} &fnao encontrado!"
+    player-not-found: "&c&lERRO &fJogador &e{player} &fnao encontrado!"
+
+# ==============================================================================
+# 15. LOBBY (Sistema Multi-Servidor)
+# ==============================================================================
+lobby:
+  # Mensagem de boas-vindas do LOBBY
+  welcome:
+    header: ""
+    title: "&6&l✦ BEM-VINDO AO HAUMEAMC! ✦"
+    selector-hint: "&7Use a &abussola &7para escolher um servidor!"
+    help-hint: "&eDigite &f/ajuda &epara ver os comandos."
+    footer: ""
+  
+  # Title ao entrar no Lobby
+  title:
+    main: "&6&lHAUMEAMC"
+    subtitle: "&7Bem-vindo ao Lobby!"
+  
+  # Double Jump
+  double-jump:
+    cooldown: "&c&lDOUBLE JUMP &fAguarde &e{time}s &fpara usar novamente!"
+  
+  # Contador de servidores
+  server-selector:
+    online-players: "&a{online} jogador(es) online"
+    server-offline: "&c&lOFFLINE"
+    connecting: "&a&lCONECTANDO... &7Enviando para &e{server}&7!"
+
+# ==============================================================================
+# 16. KITPVP (Mensagens especificas do KitPvP)
+# ==============================================================================
+kitpvp:
+  # Mensagem de boas-vindas do KITPVP
+  welcome:
+    header: ""
+    title: "&c&l⚔ BEM-VINDO AO KITPVP! ⚔"
+    kit-hint: "&7Escolha seu kit e entre em combate!"
+    help-hint: "&eDigite &f/kit &epara ver os kits disponiveis."
+    footer: ""
+  
+  # Title ao entrar no KitPvP
+  title:
+    main: "&c&l⚔ KITPVP ⚔"
+    subtitle: "&7Prepare-se para o combate!"
+
